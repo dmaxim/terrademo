@@ -1,13 +1,13 @@
 variable "resource-group" {
     type= "string"
-    default = "rg-demo-tcloud-eventhub"
+    default = "rg-demo-tfcloud-eventhub"
     description = "Resource group name"
 }
 
 
 variable "prefix" {
     type = "string"
-    default = "tcloud-eventhub"
+    default = "tfcloud-eventhub"
     description = "Prefix to use for all resources created"
 }
 
