@@ -1,7 +1,7 @@
 resource "azurerm_eventhub_namespace" "demo_ns" {
   name                = join("-", ["eh", var.namespace, var.environment])
   location            = var.location
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
 
   sku      = "Standard"
   capacity = 1
@@ -11,15 +11,14 @@ resource "azurerm_eventhub_namespace" "demo_ns" {
   }
 }
 
-// resource "azurerm_eventhub" "demo_eh" {
-//   for_each = var.event_hubs
-//   name                = each.value.name
-//   namespace_name      = azurerm_eventhub_namespace.demo_ns.name
-//   resource_group_name = var.resource_group
-
-//   partition_count   = each.value.partition_count
-//   message_retention = each.value.message_retention
-// }
+resource "azurerm_eventhub" "demo_eh" {
+   for_each = var.event_hubs
+   name                = each.value.name
+   namespace_name      = azurerm_eventhub_namespace.demo_ns.name
+   resource_group_name = var.resource_group_name
+   partition_count   = each.value.partition_count
+   message_retention = each.value.message_retention
+ }
 
 
 // resource "azurerm_eventhub_authorization_rule" "aks-event-hub-sender" {

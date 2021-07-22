@@ -6,8 +6,9 @@ module "eventhub" {
     source = "./modules/event-hub"
     environment = var.environment
     location = var.location
+    namespace = var.namespace
     resource_group_name = join("-", ["rg", var.namespace, var.environment])
     event_hubs = local.event_hubs
-
+    
 }
 
