@@ -5,7 +5,7 @@
 
 resource "azurerm_key_vault" "app-service-test-vault" {
   name                        = join("-", ["kv", var.namespace, var.environment])
-  resource_group_name         = azurerm_resource_group.veritas-rg.name
+  resource_group_name         = azurerm_resource_group.demo-rg.name
   location                    = var.location
   enabled_for_disk_encryption = false
   tenant_id                   = var.azure-tenant-id
@@ -38,7 +38,7 @@ resource "azurerm_key_vault" "app-service-test-vault" {
     bypass         = "None"
     default_action = "Deny"
     virtual_network_subnet_ids = [
-      azurerm_subnet.veritas-subnet.id
+      azurerm_subnet.demo-subnet.id
     ]
   }
 

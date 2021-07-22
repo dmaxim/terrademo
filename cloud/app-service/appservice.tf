@@ -2,8 +2,8 @@
 
 resource "azurerm_app_service_plan" "app-service-test" {
   name                = join("-", ["plan", var.namespace, var.environment])
-  resource_group_name = azurerm_resource_group.veritas-rg.name
-  location            = azurerm_resource_group.veritas-rg.location
+  resource_group_name = azurerm_resource_group.demo-rg.name
+  location            = azurerm_resource_group.demo-rg.location
 
 
   sku {
@@ -20,8 +20,8 @@ resource "azurerm_app_service_plan" "app-service-test" {
 # Veritas Azure App Service
 resource "azurerm_app_service" "app-service-test" {
   name                = join("", [var.namespace, var.environment])
-  resource_group_name = azurerm_resource_group.veritas-rg.name
-  location            = azurerm_resource_group.veritas-rg.location
+  resource_group_name = azurerm_resource_group.demo-rg.name
+  location            = azurerm_resource_group.demo-rg.location
   app_service_plan_id = azurerm_app_service_plan.app-service-test.id
 
   identity {
@@ -52,5 +52,5 @@ resource "azurerm_app_service" "app-service-test" {
 # Add App Service to VNET
 resource "azurerm_app_service_virtual_network_swift_connection" "app-service-vnet-connection" {
   app_service_id = azurerm_app_service.app-service-test.id
-  subnet_id      = azurerm_subnet.veritas-subnet.id
+  subnet_id      = azurerm_subnet.demo-subnet.id
 }

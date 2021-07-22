@@ -1,6 +1,6 @@
 # Create Veritas Database
 
-resource "azurerm_sql_database" "veritas-db" {
+resource "azurerm_sql_database" "demo-db" {
   name                = var.database-name
   resource_group_name = var.sql-server-resource-group
   server_name         = var.sql-server-name

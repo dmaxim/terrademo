@@ -59,3 +59,13 @@ variable "authorized-ips" {
   type        = string
   description = "IP Addresses with access to vnet resources"
 }
+
+variable "vnet-address-space" {
+  type        = string
+  description = "Address space for the app service vnet"
+}
+
+variable "subnet-address-prefix" {
+  type        = string
+  description = "Subnet addresses"
+}

@@ -1,9 +1,11 @@
 terraform {
-    backend "remote" {
-        organization = "seti-demo"
-    }
-
+  backend "remote" {
+    organization = "seti-demo"
+    
     workspaces {
-        name = "demo-app-service"
+      name = "demo-app-service"
     }
+  }
+
+
 }
