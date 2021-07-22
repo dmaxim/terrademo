@@ -20,33 +20,39 @@ resource "azurerm_eventhub" "demo_eh" {
    message_retention = each.value.message_retention
  }
 
+# Add Senders
 
-// resource "azurerm_eventhub_authorization_rule" "aks-event-hub-sender" {
-//   name                = "${azurerm_eventhub.aks-event-hub.name}-sender"
-//   namespace_name      = azurerm_eventhub_namespace.event-hub-ns.name
-//   eventhub_name       = azurerm_eventhub.aks-event-hub.name
-//   resource_group_name = azurerm_resource_group.terraform-resource-group.name
+resource "azurerm_eventhub_authorization_rule" "demo_eh_sender" {
+    for_each = var.event_hubs
+    name = join("-", [each.value.name, "sender"])
+    namespace_name = azurerm_eventhub_namespace.demo_ns.name
+    eventhub_name = each.value.name 
+    resource_group_name = var.resource_group_name
 
-//   listen = false
-//   send   = true
-//   manage = false
-// }
+    listen = false
+    send = true
+    manage = false
+}
 
-// resource "azurerm_eventhub_authorization_rule" "aks-event-hub-listener" {
-//   name                = "${azurerm_eventhub.aks-event-hub.name}-listener"
-//   namespace_name      = azurerm_eventhub_namespace.event-hub-ns.name
-//   eventhub_name       = azurerm_eventhub.aks-event-hub.name
-//   resource_group_name = azurerm_resource_group.terraform-resource-group.name
+# Add Listener
+resource "azurerm_eventhub_authorization_rule" "demo_eh_listener" {
+    for_each = var.event_hubs
+    name = join("-", [each.value.name, "listener"])
+    namespace_name = azurerm_eventhub_namespace.demo_ns.name
+    eventhub_name = each.value.name 
+    resource_group_name = var.resource_group_name
 
-//   listen = true
-//   send   = false
-//   manage = false
-// }
+    listen = true
+    send = false
+    manage = false
+}
 
-// resource "azurerm_eventhub_consumer_group" "aks-event-hub-consumer" {
-//   name                = "${azurerm_eventhub.aks-event-hub.name}-consumer"
-//   namespace_name      = azurerm_eventhub_namespace.event-hub-ns.name
-//   eventhub_name       = azurerm_eventhub.aks-event-hub.name
-//   resource_group_name = azurerm_resource_group.terraform-resource-group.name
-//   user_metadata       = "aks event hub consumer"
-// }
+resource "azurerm_eventhub_consumer_group" "demo_eh_consumer" {
+    for_each = var.event_hubs
+    
+    name = join("-", [each.value.name, "consumer"])
+    namespace_name = azurerm_eventhub_namespace.demo_ns.name
+    eventhub_name = each.value.name 
+    resource_group_name = var.resource_group_name
+    user_metadata = "Event hub consumer"
+}
