@@ -69,3 +69,8 @@ variable "subnet-address-prefix" {
   type        = string
   description = "Subnet addresses"
 }
+
+variable "certificate_secret_id" {
+  type = string
+  description = "Id for the certificate to bind to the app service"
+}
