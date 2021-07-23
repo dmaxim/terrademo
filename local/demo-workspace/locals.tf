@@ -80,5 +80,10 @@ locals {
       description = "Address prefix for the subnet"
       sensitive   = false
     }
+    certificate_secret_id = {
+      value       = var.certificate_secret_id
+      description = "Key Vault Id for the certificate"
+      sensitive   = true
+    }
   }
 }

@@ -1,4 +1,7 @@
 
+data "azuread_service_principal" "terraform" {
+  application_id = var.azure-service-principal-id
+}
 # Create KeyVault for Configuration and DAPI Encryption
 
 
@@ -32,6 +35,16 @@ resource "azurerm_key_vault" "app-service-test-vault" {
       "Sign"
     ]
 
+  }
+
+  access_policy {
+    tenant_id = var.azure-tenant-id
+    object_id = data.azuread_service_principal.terraform.object_id
+
+    certificate_permissions = [
+      "Get",
+      "List"
+    ]
   }
 
   # network_acls {

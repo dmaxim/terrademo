@@ -29,3 +29,6 @@ variable "application-storage-account" {}
 variable "authorized-ips" {}
 variable "vnet-address-space" {}
 variable "subnet-address-prefix" {}
+variable "certificate_secret_id" {
+  sensitive = true
+}
