@@ -49,6 +49,16 @@ resource "azurerm_key_vault" "app-service-test-vault" {
       "Get",
       "List"
     ]
+   }
+
+    access_policy {
+     tenant_id = var.azure-tenant-id
+     object_id = "abfa0a7c-a6b6-4736-8310-5855508787cd"
+
+     certificate_permissions = [
+       "Get",
+       "List"
+     ]
   }
 
   # network_acls {
