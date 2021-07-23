@@ -36,7 +36,8 @@ resource "azurerm_key_vault" "app-service-test-vault" {
     ]
 
     certificate_permissions  = [
-      "Get"
+      "Get",
+      "List"
     ]
 
   }
@@ -46,6 +47,15 @@ resource "azurerm_key_vault" "app-service-test-vault" {
     object_id = data.azuread_service_principal.terraform.object_id
 
     certificate_permissions = [
+      "Get",
+      "List"
+    ]
+    secret_permissions = [
+      "Get",
+      "List"
+    ]
+
+    key_permissions = [
       "Get",
       "List"
     ]
