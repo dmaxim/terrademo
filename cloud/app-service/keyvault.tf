@@ -67,7 +67,7 @@ resource "azurerm_key_vault" "app-service-test-vault" {
 
     access_policy {
      tenant_id = var.azure-tenant-id
-     object_id = data.azuread_service_principal.terraform.object_id
+     object_id = data.azuread_service_principal.azure_resource.object_id
 
      certificate_permissions = [
        "Get",
