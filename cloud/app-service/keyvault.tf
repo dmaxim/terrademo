@@ -34,13 +34,13 @@ resource "azurerm_key_vault" "app-service-test-vault" {
 
   }
 
-  network_acls {
-    bypass         = "None"
-    default_action = "Deny"
-    virtual_network_subnet_ids = [
-      azurerm_subnet.demo-subnet.id
-    ]
-  }
+  # network_acls {
+  #   bypass         = "None"
+  #   default_action = "Deny"
+  #   virtual_network_subnet_ids = [
+  #     azurerm_subnet.demo-subnet.id
+  #   ]
+  # }
 
   tags = {
     environment = var.environment
