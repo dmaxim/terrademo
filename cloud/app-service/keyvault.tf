@@ -35,6 +35,10 @@ resource "azurerm_key_vault" "app-service-test-vault" {
       "Sign"
     ]
 
+    certificate_permissions  = [
+      "Get"
+    ]
+
   }
 
   access_policy {
