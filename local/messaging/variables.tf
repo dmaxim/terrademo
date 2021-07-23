@@ -25,7 +25,7 @@ variable "environment" {
 }
 
 variable "hub-name" {
-  type = string
+  type        = string
   description = "Base name for all event hubs"
-  default = "setimessage"
+  default     = "setimessage"
 }
