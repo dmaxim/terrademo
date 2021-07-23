@@ -32,3 +32,4 @@ variable "subnet-address-prefix" {}
 variable "certificate_secret_id" {
   sensitive = true
 }
+variable "azure_app_service_id" {}

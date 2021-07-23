@@ -85,5 +85,10 @@ locals {
       description = "Key Vault Id for the certificate"
       sensitive   = true
     }
+    azure_app_service_id = {
+      value = var.azure_app_service_id
+      description = "Microsoft Azure App Service App Id for access to the key vault"
+      sensitive = false
+    }
   }
 }

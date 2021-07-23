@@ -1,10 +1,10 @@
 
-data "azuread_service_principal" "terraform" {
-  application_id = var.azure-service-principal-id
-}
+# data "azuread_service_principal" "terraform" {
+#   application_id = var.azure-service-principal-id
+# }
 
 data "azuread_service_principal" "azure_resource" {
-  application_id = "abfa0a7c-a6b6-4736-8310-5855508787cd"
+  application_id = var.azure_app_service_id
 }
 # Create KeyVault for Configuration and DAPI Encryption
 

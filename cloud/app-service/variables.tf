@@ -74,3 +74,8 @@ variable "certificate_secret_id" {
   type        = string
   description = "Id for the certificate to bind to the app service"
 }
+
+variable "azure_app_service_id" {
+  type = string
+  description = "Application id for the Microsoft Azure App Service"
+}
