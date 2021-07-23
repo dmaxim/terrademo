@@ -71,6 +71,6 @@ variable "subnet-address-prefix" {
 }
 
 variable "certificate_secret_id" {
-  type = string
+  type        = string
   description = "Id for the certificate to bind to the app service"
 }
