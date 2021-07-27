@@ -1,7 +1,7 @@
 
-# data "azuread_service_principal" "terraform" {
-#   application_id = var.azure-service-principal-id
-# }
+data "azuread_service_principal" "terraform" {
+  application_id = var.azure-service-principal-id
+}
 
 data "azuread_service_principal" "azure_resource" {
   application_id = var.azure_app_service_id
