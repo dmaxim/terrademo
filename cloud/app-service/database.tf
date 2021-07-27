@@ -1,4 +1,4 @@
-# Create Veritas Database
+# Create Demo Database Database
 
 resource "azurerm_sql_database" "demo-db" {
   name                = var.database-name
@@ -18,3 +18,12 @@ resource "azurerm_sql_database" "demo-db" {
 }
 
 
+resource "azurerm_sql_database" "demo-db" {
+  name                = "${var.database-name}_02"
+  resource_group_name = var.sql-server-resource-group
+  server_name         = var.sql-server-name
+  location            = var.location
+  collation           = "SQL_Latin1_General_CP1_CI_AS"
+
+  requested_service_objective_name = "S1"
+}
