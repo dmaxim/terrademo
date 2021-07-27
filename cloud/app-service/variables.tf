@@ -76,6 +76,11 @@ variable "certificate_secret_id" {
 }
 
 variable "azure_app_service_id" {
-  type = string
+  type        = string
   description = "Application id for the Microsoft Azure App Service"
+}
+
+variable "relay_host_name" {
+  type        = string
+  description = "DNS host name for hybrid connection"
 }

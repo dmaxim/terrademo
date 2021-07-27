@@ -54,3 +54,4 @@ resource "azurerm_app_service_virtual_network_swift_connection" "app-service-vne
   app_service_id = azurerm_app_service.app-service-test.id
   subnet_id      = azurerm_subnet.demo-subnet.id
 }
+
