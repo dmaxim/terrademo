@@ -18,7 +18,7 @@ resource "azurerm_sql_database" "demo-db" {
 }
 
 
-resource "azurerm_sql_database" "demo-db" {
+resource "azurerm_sql_database" "demo-db-2" {
   name                = "${var.database-name}_02"
   resource_group_name = var.sql-server-resource-group
   server_name         = var.sql-server-name
