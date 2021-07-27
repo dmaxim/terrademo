@@ -46,24 +46,24 @@ resource "azurerm_key_vault" "app-service-test-vault" {
 
   }
 
-  # access_policy {
-  #   tenant_id = var.azure-tenant-id
-  #   object_id = data.azuread_service_principal.terraform.object_id
+  access_policy {
+    tenant_id = var.azure-tenant-id
+    object_id = data.azuread_service_principal.terraform.object_id
 
-  #   certificate_permissions = [
-  #     "Get",
-  #     "List"
-  #   ]
-  #   secret_permissions = [
-  #     "Get",
-  #     "List"
-  #   ]
+    certificate_permissions = [
+      "Get",
+      "List"
+    ]
+    secret_permissions = [
+      "Get",
+      "List"
+    ]
 
-  #   key_permissions = [
-  #     "Get",
-  #     "List"
-  #   ]
-  #  }
+    key_permissions = [
+      "Get",
+      "List"
+    ]
+   }
     # Grant the Azure App Service permissions to certificates and secrets to allow adding the certificate to the app service
     access_policy {
      tenant_id = var.azure-tenant-id

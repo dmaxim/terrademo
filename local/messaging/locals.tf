@@ -18,18 +18,17 @@ locals {
     namespace_one = {
       name            = join("-", ["rn", var.namespace, var.environment, "01"])
       connection_name = join("-", ["hc", var.namespace, var.environment, "01"])
-      metadata = {
-        key   = "endpoint"
-        value = "someendpoint:1433"
-      }
+      app_service_name = ""
+      port_number = 1433
+      host_name = ""
+      
     }
     namespace_two = {
       name            = join("-", ["rn", var.namespace, var.environment, "02"])
       connection_name = join("-", ["hc", var.namespace, var.environment, "02"])
-      metadata = {
-        key   = "endpoint"
-        value = "otherendpoint:1433"
-      }
+      app_service_name = ""
+      port_number = 1433
+      host_name = ""
     }
   }
 }
