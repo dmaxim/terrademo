@@ -19,22 +19,23 @@ resource "azurerm_servicebus_topic" "demo" {
     enable_partitioning = false
 }
 
-# resource "azurerm_servicebus_queue" "demo" {
-#     for_each = var.topics
-#     name = each.value.name
-#     resource_group_name = var.resource_group_name
-#     namespace_name = azurerm_servicebus_namespace.demo.name
-#     enable_partitioning = false
-# }
+resource "azurerm_servicebus_queue" "demo" {
+    for_each = var.topics
+    name = each.value.name
+    resource_group_name = var.resource_group_name
+    namespace_name = azurerm_servicebus_namespace.demo.name
+    enable_partitioning = false
+}
 
-# resource "azurerm_servicebus_subscription" "demo" {
-#     for_each = var.topics
-#     name = each.value.name
-#     namespace_name = azurerm_servicebus_namespace.demo.name
-#     resource_group_name = var.resource_group_name
-#     topic_name = each.value.name
-#     max_delivery_count = 1
-# }
+resource "azurerm_servicebus_subscription" "demo" {
+    for_each = var.topics
+    name = each.value.name
+    namespace_name = azurerm_servicebus_namespace.demo.name
+    resource_group_name = var.resource_group_name
+    topic_name = join("-", [each.value.name, "topic"])
+    max_delivery_count = 1
+    forward_to = each.value.name
+}
 
 # resource "azurerm_servicebus_topic_authorization_rule" "demo_listener" {
 #     for_each = var.topics
