@@ -2,10 +2,10 @@
 locals {
   asb_topics = {
     add_resource = {
-      name = "AddResource"
+      name = "addresource"
     }
     resource_added = {
-      name = "ResourceAdded"
+      name = "resourceadded"
     }
   }
 }
