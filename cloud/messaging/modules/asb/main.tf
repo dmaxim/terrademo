@@ -19,24 +19,24 @@ resource "azurerm_servicebus_topic" "demo" {
     enable_partitioning = false
 }
 
-resource "azurerm_servicebus_topic_authorization_rule" "demo_listener" {
-    for_each = var.topics
-    name = join("-", [each.value.name, "listener"])
-    namespace_name = azurerm_servicebus_namespace.demo.name
-    topic_name = each.value.name
-    resource_group_name = var.resource_group_name
-    listen = true
-    send = false
-    manage = false
-}
+# resource "azurerm_servicebus_topic_authorization_rule" "demo_listener" {
+#     for_each = var.topics
+#     name = join("-", [each.value.name, "listener"])
+#     namespace_name = azurerm_servicebus_namespace.demo.name
+#     topic_name = each.value.name
+#     resource_group_name = var.resource_group_name
+#     listen = true
+#     send = false
+#     manage = false
+# }
 
-resource "azurerm_servicebus_topic_authorization_rule" "demo_sender" {
-    for_each = var.topics
-    name = join("-", [each.value.name, "sender"])
-    namespace_name = azurerm_servicebus_namespace.demo.name
-    topic_name = each.value.name
-    resource_group_name = var.resource_group_name
-    listen = false
-    send = true
-    manage = false
-}
+# resource "azurerm_servicebus_topic_authorization_rule" "demo_sender" {
+#     for_each = var.topics
+#     name = join("-", [each.value.name, "sender"])
+#     namespace_name = azurerm_servicebus_namespace.demo.name
+#     topic_name = each.value.name
+#     resource_group_name = var.resource_group_name
+#     listen = false
+#     send = true
+#     manage = false
+# }
