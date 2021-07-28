@@ -14,3 +14,9 @@ variable "environment" {
   type        = string
   description = "Environment name"
 }
+
+
+variable "asb_sku" {
+  type        = string
+  description = "SKU for the ASB Namespace"
+}

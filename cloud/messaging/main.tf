@@ -12,4 +12,12 @@ resource "azurerm_resource_group" "demo_rg" {
 
 # Create ASB Namespace
 
-# Create a topic?
+module "asb" {
+  source              = "./modules/asb"
+  namespace           = var.namespace
+  location            = azurerm_resource_group.demo_rg.location
+  resource_group_name = azurerm_resource_group.demo_rg.name
+  environment         = var.environment
+  asb_sku             = var.asb_sku
+  topics              = local.asb_topics
+}
