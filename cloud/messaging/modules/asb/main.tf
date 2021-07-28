@@ -16,7 +16,7 @@ resource "azurerm_servicebus_topic" "demo" {
     resource_group_name = var.resource_group_name
     namespace_name = azurerm_servicebus_namespace.demo.name
 
-    enable_partitioning = true
+    enable_partitioning = false
 }
 
 resource "azurerm_servicebus_topic_authorization_rule" "demo_listener" {
