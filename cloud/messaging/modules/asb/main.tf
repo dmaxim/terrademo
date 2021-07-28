@@ -19,13 +19,13 @@ resource "azurerm_servicebus_topic" "demo" {
     enable_partitioning = false
 }
 
-# resource "azurerm_servicebus_queue" "demo" {
-#     for_each = var.topics
-#     name = each.value.name
-#     resource_group_name = var.resource_group_name
-#     namespace_name = azurerm_servicebus_namespace.demo.name
-#     enable_partitioning = false
-# }
+resource "azurerm_servicebus_queue" "demo" {
+    for_each = var.topics
+    name = each.value.name
+    resource_group_name = var.resource_group_name
+    namespace_name = azurerm_servicebus_namespace.demo.name
+    enable_partitioning = false
+}
 
 # resource "azurerm_servicebus_subscription" "demo" {
 #     for_each = var.topics
