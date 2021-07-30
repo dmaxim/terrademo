@@ -21,3 +21,15 @@ module "asb" {
   asb_sku             = var.asb_sku
   topics              = local.asb_topics
 }
+
+
+# Create Event Grid
+
+module "event-grid" {
+  source              = "./modules/event-grid"
+  namespace           = var.namespace
+  location            = azurerm_resource_group.demo_rg.location
+  resource_group_name = azurerm_resource_group.demo_rg.name
+  environment         = var.environment
+
+}
