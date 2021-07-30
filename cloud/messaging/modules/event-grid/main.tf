@@ -1,23 +1,26 @@
 
-
-resource "azurerm_eventgrid_topic" "demo" {
-  name                = join("-", ["egt", var.namespace, var.environment, "resource-added"])
+resource "azurerm_eventgrid_domain" "demo" {
+  name                = join("-", ["eg", var.namespace, var.environment])
   location            = var.location
   resource_group_name = var.resource_group_name
 
   tags = {
     environment = var.environment
   }
+}
+
+resource "azurerm_eventgrid_domain_topic" "demo_added" {
+  name                = "resourceadded"
+  domain_name         = azurerm_eventgrid_domain.demo.name
+  resource_group_name = var.resource_group_name
+
 
 }
 
-resource "azurerm_eventgrid_topic" "demo_deleted" {
-  name                = join("-", ["egt", var.namespace, var.environment, "resource-deleted"])
-  location            = var.location
+resource "azurerm_eventgrid_domain_topic" "demo_deleted" {
+  name                = "resourcedeleted"
+  domain_name         = azurerm_eventgrid_domain.demo.name
   resource_group_name = var.resource_group_name
 
-  tags = {
-    environment = var.environment
-  }
 
 }
