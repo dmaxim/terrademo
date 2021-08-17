@@ -7,7 +7,8 @@ pool:
 stages:
 - stage: Plan
   jobs:
-  - job:
-    - task: TerraformInstaller@0
+  - job: 'Install'
+    steps:
+    - step : TerraformInstaller@0
       inputs:
         terraformVersion: '1.0.2'
