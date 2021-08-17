@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 pool:
   name: DevOpsLocal
@@ -14,4 +14,18 @@ steps:
   inputs:
       script: |
         terraform init
+      workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+
+- task: CmdLine@2
+  displayName: "Terraform Plan"
+  inputs:
+      script: |
+        terraform plan
+      workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+
+- task: CmdLine@2
+  displayName: "Terraform Apply"
+  inputs:
+      script: |
+        terraform apply -auto-approve
       workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
