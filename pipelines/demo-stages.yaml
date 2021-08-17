@@ -37,6 +37,7 @@ stages:
       inputs:
         script: |
           terraform init
+        workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
     - task: CmdLine@2
       displayName: 'Terraform Apply'
       inputs:
