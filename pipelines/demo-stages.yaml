@@ -9,6 +9,6 @@ stages:
   jobs:
   - job: 'Install'
     steps:
-    - step : TerraformInstaller@0
+    - task : TerraformInstaller@0
       inputs:
         terraformVersion: '1.0.2'
