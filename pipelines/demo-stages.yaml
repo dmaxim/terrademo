@@ -1,0 +1,13 @@
+trigger:
+- master
+
+pool:
+  name: DevOpsLocal
+
+stages:
+- stage: Plan
+  jobs:
+  - job:
+    - task: TerraformInstaller@0
+      inputs:
+        terraformVersion: '1.0.2'
