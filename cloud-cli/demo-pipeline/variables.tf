@@ -18,3 +18,6 @@ variable "storage_account_name" {
   type        = string
   description = "Azure storage for the function app"
 }
+
+
+
