@@ -13,14 +13,14 @@ stages:
       inputs:
         terraformVersion: '1.0.2'
     - task: CmdLine@2
-      displayName: "Terraform Init"
+      displayName: 'Terraform Init'
       inputs:
         script: |
           terraform init
         workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
 
     - task: CmdLine@2
-      displayName: "Terraform Plan"
+      displayName: 'Terraform Plan'
       inputs:
         script: |
           terraform plan
@@ -33,7 +33,12 @@ stages:
       inputs:
         terraformVersion: '1.0.2'
     - task: CmdLine@2
-      displayName: "Terraform Apply"
+      displayName: 'Terraform Init'
+      inputs:
+        script: |
+          terraform init
+    - task: CmdLine@2
+      displayName: 'Terraform Apply'
       inputs:
         script: |
           terraform apply -auto-approve
