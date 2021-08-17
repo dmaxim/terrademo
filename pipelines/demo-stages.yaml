@@ -27,20 +27,26 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
 - stage: Apply
   jobs: 
-  - job: 'Apply'
-    steps:
-    - task: TerraformInstaller@0
-      inputs:
-        terraformVersion: '1.0.2'
-    - task: CmdLine@2
-      displayName: 'Terraform Init'
-      inputs:
-        script: |
-          terraform init
-        workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
-    - task: CmdLine@2
-      displayName: 'Terraform Apply'
-      inputs:
-        script: |
-          terraform apply -auto-approve
-        workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+  - deployment: 
+    displayName: Apply
+    environment: azure-infrastructure
+    strategy:
+     runOnce:
+       deploy:
+        steps:
+          - task: TerraformInstaller@0
+            displayName: 'Install Terraform'
+            inputs:
+              terraformVersion: '1.0.2'
+          - task: CmdLine@2
+            displayName: 'Terraform Init'
+            inputs:
+              script: |
+                terraform init
+              workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+          - task: CmdLine@2
+            displayName: 'Terraform Apply'
+            inputs:
+              script: |
+                terraform apply -auto-approve
+              workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
