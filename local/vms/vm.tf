@@ -1,4 +1,4 @@
-# Storage Account
+# Storage Account Id
 resource "random_id" "randomId" {
   keepers = {
     resource_group = azurerm_resource_group.shared_rg.name
@@ -50,7 +50,7 @@ resource "azurerm_network_interface_security_group_association" "sql_nsg" {
 }
 
 
-# VM
+# Virtual Machine Definition
 
 resource "azurerm_windows_virtual_machine" "sql_vm" {
   name                  = "mxinfosql01"

@@ -1,4 +1,4 @@
-
+# Create Shared Resource Group
 resource "azurerm_resource_group" "shared_rg" {
   name     = join("-", ["rg", var.namespace])
   location = var.location
