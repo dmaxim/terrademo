@@ -57,8 +57,8 @@ resource "azurerm_windows_virtual_machine" "sql_vm" {
   resource_group_name   = azurerm_resource_group.shared_rg.name
   location              = azurerm_resource_group.shared_rg.location
   network_interface_ids = [azurerm_network_interface.sql_vm_nic.id]
-  size               = "Standard_DS1_V2"
-  admin_username       = var.sql-admin
+  size                  = "Standard_DS1_V2"
+  admin_username        = var.sql-admin
   admin_password        = var.sql-admin-password
 
   os_disk {

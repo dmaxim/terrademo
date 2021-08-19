@@ -6,6 +6,9 @@ locals {
     },
     resource_deleted = {
       name = "resourcedeleted"
+    },
+    demo_topic = {
+      name = "demotopic"
     }
   }
 }
