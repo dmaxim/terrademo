@@ -1,0 +1,31 @@
+trigger:
+- master
+
+pool:
+  name: DevOpsLocal
+
+
+steps:
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '1.0.2'
+- task: CmdLine@2
+  displayName: "Terraform Init"
+  inputs:
+      script: |
+        terraform init
+      workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+
+- task: CmdLine@2
+  displayName: "Terraform Plan"
+  inputs:
+      script: |
+        terraform plan
+      workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
+
+- task: CmdLine@2
+  displayName: "Terraform Apply"
+  inputs:
+      script: |
+        terraform apply -auto-approve
+      workingDirectory: '$(System.DefaultWorkingDirectory)/cloud-cli/demo-pipeline'
