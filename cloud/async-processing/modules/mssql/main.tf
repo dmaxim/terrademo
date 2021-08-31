@@ -50,3 +50,12 @@ resource "azurerm_sql_database" "demo-db-2" {
 
   requested_service_objective_name = each.value.service_objective
 }
+
+
+# Virtual Network Access
+resource "azurerm_sql_virtual_network_rule" "demo_sql" {
+  name                = join("-", ["vnet-rule", var.namespace, var.environment])
+  resource_group_name = var.resource_group_name
+  server_name         = azurerm_sql_server.demo_shared.name
+  subnet_id           = var.private_subnet_id
+}

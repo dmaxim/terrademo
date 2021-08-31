@@ -8,6 +8,14 @@ resource "azurerm_resource_group" "messaging" {
 
 
 // Create VNET with Private Subnet
+module "network" {
+  source              = "./modules/network"
+  namespace           = var.namespace
+  environment         = var.environment
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  vnet_address_space  = var.vnet_address_space
+}
 
 // ASB
 
@@ -35,7 +43,7 @@ module "sql_server" {
   sql_admin                  = var.sql_admin
   sql_admin_password         = var.sql_admin_password
   databases                  = local.sql_databases
-
+  private_subnet_id = module.network.private_subnet_id 
 }
 
 

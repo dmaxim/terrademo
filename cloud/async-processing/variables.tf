@@ -63,17 +63,22 @@ variable "sql_admin_password" {
 
 # App Services for Web Jobs
 variable "webjob_app_service_plan_tier" {
-  type = string
+  type        = string
   description = "Performance tier of the web job application service plan"
 }
 
 variable "webjob_app_service_plan_size" {
-  type = string
+  type        = string
   description = "App service plan size for the web job application service plan"
 
 }
 # Function Apps
 variable "function_app_storage_account" {
-  type = string
+  type        = string
   description = "Azure storage account for use by the function apps"
+}
+
+variable "vnet_address_space" {
+  type        = string
+  description = "CIDR Block for the VNET containing the azure resources"
 }

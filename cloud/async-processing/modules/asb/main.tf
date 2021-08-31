@@ -37,6 +37,19 @@ resource "azurerm_servicebus_subscription" "demo" {
   forward_to          = each.value.name
 }
 
+# Add Network Rule to only allow access via the private subnet - Only available in premium
+
+# resource "azurerm_servicebus_namespace_network_rule_set" "demo" {
+#   namespace_name = azurerm_servicebus_namespace.demo.name
+#   resource_group_name = var.resource_group_name
+#   default_action = "Deny"
+
+#   network_rules {
+#     subnet_id = var.private_subnet_id
+#     ignore_missing_vnet_service_endpoint = false
+#   }
+# }
+
 # resource "azurerm_servicebus_topic_authorization_rule" "demo_listener" {
 #     for_each = var.topics
 #     name = join("-", [each.value.name, "listener"])

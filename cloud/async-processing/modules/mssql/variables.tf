@@ -17,6 +17,8 @@ variable "sql_server_version" {}
 
 variable "sql_admin" {}
 
+
+variable "private_subnet_id" {}
 variable "sql_admin_password" {}
 
 variable "databases" {}
