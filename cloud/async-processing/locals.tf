@@ -17,6 +17,11 @@ locals {
       name = join("-", ["plan", "jobs", var.namespace, var.environment]),
       tier = var.webjob_app_service_plan_tier
       size = var.webjob_app_service_plan_size
+      app_services = {
+        webjob_service = {
+          name = join("-", ["webjobhost", var.namespace, var.environment])
+        }
+      }
     }
   }
   function_apps = {

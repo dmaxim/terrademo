@@ -1,3 +1,7 @@
+# locals {
+#   app_services = { for plan in var.app_service_plans} 
+# }
+
 # Create App Service Plan 
 
 resource "azurerm_app_service_plan" "demo" {
