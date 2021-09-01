@@ -52,6 +52,7 @@ resource "azurerm_sql_database" "demo-db-2" {
 }
 
 
+
 # Virtual Network Access
 resource "azurerm_sql_virtual_network_rule" "demo_sql" {
   name                = join("-", ["vnet-rule", var.namespace, var.environment])
@@ -59,3 +60,28 @@ resource "azurerm_sql_virtual_network_rule" "demo_sql" {
   server_name         = azurerm_sql_server.demo_shared.name
   subnet_id           = var.private_subnet_id
 }
+
+# Create the SQL Elastic Job Database and Agent
+
+resource "azurerm_sql_database" "jobs" {
+  name                             = join("", ["JobAgent", var.environment])
+  resource_group_name              = var.resource_group_name
+  server_name                      = azurerm_sql_server.demo_shared.name
+  location                         = var.location
+  collation                        = "SQL_Latin1_General_CP1_CI_AS"
+  requested_service_objective_name = "S1"
+}
+
+resource "azurerm_mssql_job_agent" "jobs" {
+  name        = join("-", ["agent", var.namespace, var.environment])
+  location    = var.location
+  database_id = azurerm_sql_database.jobs.id
+}
+
+resource "azurerm_mssql_job_credential" "example" {
+  name         = join("-", ["agent-credential", var.namespace, var.environment])
+  job_agent_id = azurerm_mssql_job_agent.jobs.id
+  username     = var.sql_job_agent_username
+  password     = var.sql_job_agent_password
+}
+
