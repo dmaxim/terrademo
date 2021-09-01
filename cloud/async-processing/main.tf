@@ -29,6 +29,14 @@ module "asb" {
   topics              = local.asb_topics
 }
 
+// Create additional Topic Subscriptions (NOTE the topics were created by Rebus)
+module "asb_subscription" {
+  source                   = "./modules/asb-subscription"
+  resource_group_name      = azurerm_resource_group.messaging.name
+  azure_service_bus_name = join("-", ["asb", var.namespace, var.environment])
+  subscriptions            = local.topic_subscriptions
+}
+
 // Create SQL Server and demo database
 module "sql_server" {
   source                     = "./modules/mssql"
@@ -43,19 +51,25 @@ module "sql_server" {
   sql_admin                  = var.sql_admin
   sql_admin_password         = var.sql_admin_password
   databases                  = local.sql_databases
-  private_subnet_id = module.network.private_subnet_id 
+  private_subnet_id          = module.network.private_subnet_id
+  sql_job_agent_user_name    = var.sql_job_agent_user_name
+  sql_job_agent_password     = var.sql_job_agent_password
 }
 
 
 // Create the App Service Plans for the WebJobs
 
 module "app_service_plan" {
-  source              = "./modules/app-service"
-  location            = azurerm_resource_group.messaging.location
-  resource_group_name = azurerm_resource_group.messaging.name
-  environment         = var.environment
-  app_service_plans   = local.app_service_plans
+  source                = "./modules/app-service"
+  location              = azurerm_resource_group.messaging.location
+  resource_group_name   = azurerm_resource_group.messaging.name
+  environment           = var.environment
+  app_service_plan_name = local.app_service_plans.webjobs.name
+  tier                  = local.app_service_plans.webjobs.tier
+  size                  = local.app_service_plans.webjobs.size
+  app_services          = local.app_service_plans.webjobs.app_services
 }
+
 
 // Create the Function App for Event Processing
 

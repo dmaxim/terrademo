@@ -61,13 +61,13 @@ variable "sql_admin_password" {
 }
 
 variable "sql_job_agent_user_name" {
-    description = "User Name to run SQL Elastic Jobs under"
-    sensitive = true
+  description = "User Name to run SQL Elastic Jobs under"
+  sensitive   = true
 }
 
 variable "sql_job_agent_password" {
-    description = "Password for the SQL Job Agent user"
-    sensitive = true
+  description = "Password for the SQL Job Agent user"
+  sensitive   = true
 
 }
 

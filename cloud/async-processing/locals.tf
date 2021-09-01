@@ -29,5 +29,16 @@ locals {
       name = join("-", ["xoc", var.namespace, var.environment])
     }
   }
+  web_jobs = {
+    webjob_service = {
+      name = join("-", ["webjobhost", var.namespace, var.environment])
+    }
+  }
+  topic_subscriptions = {
+    demo_events = {
+      topic_name = "dart.messaging.domain~dart.domain.messaging.messages.events.xocdemoevent"
+      queue_name = "xocdemoevent"
+    }
+  }
 }
 

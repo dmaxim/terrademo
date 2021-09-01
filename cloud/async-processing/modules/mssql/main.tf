@@ -81,7 +81,7 @@ resource "azurerm_mssql_job_agent" "jobs" {
 resource "azurerm_mssql_job_credential" "example" {
   name         = join("-", ["agent-credential", var.namespace, var.environment])
   job_agent_id = azurerm_mssql_job_agent.jobs.id
-  username     = var.sql_job_agent_username
+  username     = var.sql_job_agent_user_name
   password     = var.sql_job_agent_password
 }
 

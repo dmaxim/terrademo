@@ -24,9 +24,9 @@ variable "sql_admin_password" {}
 variable "databases" {}
 
 variable "sql_job_agent_user_name" {
-    sensitive = true
+  sensitive = true
 }
 
 variable "sql_job_agent_password" {
-    sensitive = true
+  sensitive = true
 }
