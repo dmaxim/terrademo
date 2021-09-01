@@ -60,20 +60,30 @@ variable "sql_admin_password" {
   sensitive   = true
 }
 
+variable "sql_job_agent_user_name" {
+    description = "User Name to run SQL Elastic Jobs under"
+    sensitive = true
+}
+
+variable "sql_job_agent_password" {
+    description = "Password for the SQL Job Agent user"
+    sensitive = true
+
+}
 
 # App Services for Web Jobs
 variable "webjob_app_service_plan_tier" {
-  type = string
+  type        = string
   description = "Performance tier of the web job application service plan"
 }
 
 variable "webjob_app_service_plan_size" {
-  type = string
+  type        = string
   description = "App service plan size for the web job application service plan"
 
 }
 # Function Apps
 variable "function_app_storage_account" {
-  type = string
+  type        = string
   description = "Azure storage account for use by the function apps"
 }
