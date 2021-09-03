@@ -54,12 +54,12 @@ resource "azurerm_sql_database" "demo-db-2" {
 
 
 # Virtual Network Access
-resource "azurerm_sql_virtual_network_rule" "demo_sql" {
-  name                = join("-", ["vnet-rule", var.namespace, var.environment])
-  resource_group_name = var.resource_group_name
-  server_name         = azurerm_sql_server.demo_shared.name
-  subnet_id           = var.private_subnet_id
-}
+# resource "azurerm_sql_virtual_network_rule" "demo_sql" {
+#   name                = join("-", ["vnet-rule", var.namespace, var.environment])
+#   resource_group_name = var.resource_group_name
+#   server_name         = azurerm_sql_server.demo_shared.name
+#   subnet_id           = var.private_subnet_id
+# }
 
 # Create the SQL Elastic Job Database and Agent
 
@@ -85,3 +85,12 @@ resource "azurerm_mssql_job_credential" "example" {
   password     = var.sql_job_agent_password
 }
 
+
+# Firewall Rules
+resource "azurerm_sql_firewall_rule" "demo" {
+  name  = "dm-home"
+  resource_group_name = var.resource_group_name
+  server_name = azurerm_sql_server.demo_shared.name
+  start_ip_address = var.whitelist_ip_address
+  end_ip_address = var.whitelist_ip_address
+}

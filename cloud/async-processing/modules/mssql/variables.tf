@@ -30,3 +30,5 @@ variable "sql_job_agent_user_name" {
 variable "sql_job_agent_password" {
   sensitive = true
 }
+
+variable "whitelist_ip_address" {}

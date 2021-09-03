@@ -9,7 +9,6 @@ locals {
     messaging_demo = {
       name              = "DartMessagingDemo",
       service_objective = "S1"
-
     }
   }
   app_service_plans = {
@@ -38,6 +37,10 @@ locals {
     demo_events = {
       topic_name = "dart.messaging.domain~dart.domain.messaging.messages.events.xocdemoevent"
       queue_name = "xocdemoevent"
+    }
+    dialer_result_recieved = {
+      topic_name = "dart.messaging.domain~dart.domain.messaging.messages.events.dialerresultreceived"
+      queue_name = "dialerresultreceived"
     }
   }
 }

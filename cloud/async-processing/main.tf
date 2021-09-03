@@ -54,6 +54,7 @@ module "sql_server" {
   private_subnet_id          = module.network.private_subnet_id
   sql_job_agent_user_name    = var.sql_job_agent_user_name
   sql_job_agent_password     = var.sql_job_agent_password
+  whitelist_ip_address      = var.whitelist_ip_address
 }
 
 

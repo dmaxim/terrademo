@@ -68,7 +68,10 @@ variable "sql_job_agent_user_name" {
 variable "sql_job_agent_password" {
   description = "Password for the SQL Job Agent user"
   sensitive   = true
+}
 
+variable "whitelist_ip_address" {
+  description = "IP Address for external access to the sql database"
 }
 
 # App Services for Web Jobs
