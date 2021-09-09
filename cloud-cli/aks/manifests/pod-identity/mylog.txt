@@ -1,0 +1,518 @@
+I0908 21:16:30.317000       1 main.go:114] starting mic process. Version: v1.8.3. Build date: 2021-08-27-21:21
+W0908 21:16:30.317049       1 main.go:119] --kubeconfig not passed will use InClusterConfig
+I0908 21:16:30.317058       1 main.go:136] kubeconfig () cloudconfig (/etc/kubernetes/azure.json)
+I0908 21:16:30.317217       1 main.go:144] running MIC in namespaced mode: false
+I0908 21:16:30.317227       1 main.go:148] client QPS set to: 5. Burst to: 5
+I0908 21:16:30.317246       1 mic.go:138] starting to create the pod identity client. Version: v1.8.3. Build date: 2021-08-27-21:21
+I0908 21:16:30.342438       1 round_trippers.go:444] GET https://10.0.0.1:443/version?timeout=32s 200 OK in 23 milliseconds
+I0908 21:16:30.342615       1 mic.go:144] Kubernetes server version: v1.20.7
+I0908 21:16:30.342650       1 cloudprovider.go:71] populating AzureConfig from azure.json
+I0908 21:16:30.342864       1 cloudprovider.go:122] MIC using user assigned identity: b8aa##### REDACTED #####36bc for authentication.
+I0908 21:16:30.342908       1 mic.go:153] cloud provider initialized
+I0908 21:16:30.344581       1 mic.go:161] CRD client initialized
+I0908 21:16:30.344673       1 mic.go:164] pod Client initialized
+I0908 21:16:30.344791       1 mic.go:183] cloud config watcher initialized
+I0908 21:16:30.344939       1 probes.go:41] initialized health probe on port 8080
+I0908 21:16:30.344954       1 probes.go:44] started health probe
+I0908 21:16:30.345072       1 metrics.go:341] registered views for metric
+I0908 21:16:30.345167       1 prometheus_exporter.go:21] starting Prometheus exporter
+I0908 21:16:30.345183       1 metrics.go:347] registered and exported metrics on port 8888
+I0908 21:16:30.345188       1 mic.go:242] initiating MIC Leader election
+I0908 21:16:30.345244       1 leaderelection.go:243] attempting to acquire leader lease  default/aad-pod-identity-mic...
+I0908 21:16:30.349598       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:16:30.350363       1 leaderelection.go:346] lock is held by mic-8db78b955-7fnkh and has not yet expired
+I0908 21:16:30.350382       1 leaderelection.go:248] failed to acquire lease default/aad-pod-identity-mic
+I0908 21:16:36.826857       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:16:36.827280       1 leaderelection.go:346] lock is held by mic-8db78b955-7fnkh and has not yet expired
+I0908 21:16:36.827380       1 leaderelection.go:248] failed to acquire lease default/aad-pod-identity-mic
+I0908 21:16:44.815993       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:16:44.816131       1 leaderelection.go:346] lock is held by mic-8db78b955-7fnkh and has not yet expired
+I0908 21:16:44.816150       1 leaderelection.go:248] failed to acquire lease default/aad-pod-identity-mic
+I0908 21:16:51.561498       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:16:51.569233       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 7 milliseconds
+I0908 21:16:51.569347       1 leaderelection.go:253] successfully acquired lease default/aad-pod-identity-mic
+I0908 21:16:51.569516       1 mic.go:338] MIC client starting..
+I0908 21:16:51.573166       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 3 milliseconds
+I0908 21:16:51.574485       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/configmaps/aad-pod-identity-config 200 OK in 4 milliseconds
+I0908 21:16:51.574972       1 mic.go:330] type upgrade status configmap found from version: v1.8.3. Skipping type upgrade!
+I0908 21:16:51.574984       1 round_trippers.go:444] POST https://10.0.0.1:443/api/v1/namespaces/default/events 201 Created in 5 milliseconds
+I0908 21:16:51.575005       1 mic.go:371] cloud config watcher started
+I0908 21:16:51.575034       1 pod.go:67] wait for cache to sync
+I0908 21:16:51.575162       1 reflector.go:207] Starting reflector *v1.Pod (30s) from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575174       1 reflector.go:243] Listing and watching *v1.Pod from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575244       1 reflector.go:207] Starting reflector *v1.AzureIdentityBinding (10m0s) from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575267       1 reflector.go:243] Listing and watching *v1.AzureIdentityBinding from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575519       1 reflector.go:207] Starting reflector *v1.AzureIdentity (10m0s) from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575532       1 reflector.go:243] Listing and watching *v1.AzureIdentity from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575585       1 reflector.go:207] Starting reflector *v1.AzureAssignedIdentity (10m0s) from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575597       1 reflector.go:243] Listing and watching *v1.AzureAssignedIdentity from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575716       1 reflector.go:207] Starting reflector *v1.Node (30s) from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.575733       1 reflector.go:243] Listing and watching *v1.Node from pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156
+I0908 21:16:51.576749       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureidentitybindings?limit=500&resourceVersion=0 200 OK in 1 milliseconds
+I0908 21:16:51.577088       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureassignedidentities?limit=500&resourceVersion=0 200 OK in 1 milliseconds
+I0908 21:16:51.577419       1 crd.go:194] binding created
+I0908 21:16:51.577453       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureidentities?limit=500&resourceVersion=0 200 OK in 1 milliseconds
+I0908 21:16:51.578233       1 crd.go:225] identity created
+I0908 21:16:51.578286       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureidentitybindings?allowWatchBookmarks=true&resourceVersion=8219915&timeoutSeconds=427&watch=true 200 OK in 0 milliseconds
+I0908 21:16:51.579069       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureidentities?allowWatchBookmarks=true&resourceVersion=8212092&timeoutSeconds=506&watch=true 200 OK in 0 milliseconds
+I0908 21:16:51.579273       1 round_trippers.go:444] GET https://10.0.0.1:443/apis/aadpodidentity.k8s.io/v1/azureassignedidentities?allowWatchBookmarks=true&resourceVersion=8201791&timeoutSeconds=319&watch=true 200 OK in 0 milliseconds
+I0908 21:16:51.675581       1 shared_informer.go:270] caches populated
+I0908 21:16:51.675606       1 crd.go:457] CRD informers started
+I0908 21:16:51.675613       1 mic.go:357] CRD client started
+I0908 21:16:51.757910       1 request.go:581] Throttling request took 184.59371ms, request: PUT:https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic
+I0908 21:16:51.762375       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:16:51.762504       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:16:51.957089       1 request.go:581] Throttling request took 381.838367ms, request: GET:https://10.0.0.1:443/api/v1/pods?limit=500&resourceVersion=0
+I0908 21:16:51.964921       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/pods?limit=500&resourceVersion=0 200 OK in 7 milliseconds
+I0908 21:16:52.015546       1 pod.go:44] pod created
+I0908 21:16:52.015629       1 pod.go:44] pod created
+I0908 21:16:52.015800       1 pod.go:44] pod created
+I0908 21:16:52.015826       1 pod.go:44] pod created
+I0908 21:16:52.015831       1 pod.go:44] pod created
+I0908 21:16:52.015834       1 pod.go:44] pod created
+I0908 21:16:52.015838       1 pod.go:44] pod created
+I0908 21:16:52.015841       1 pod.go:44] pod created
+I0908 21:16:52.016314       1 pod.go:44] pod created
+I0908 21:16:52.016320       1 pod.go:44] pod created
+I0908 21:16:52.016324       1 pod.go:44] pod created
+I0908 21:16:52.016327       1 pod.go:44] pod created
+I0908 21:16:52.016331       1 pod.go:44] pod created
+I0908 21:16:52.016334       1 pod.go:44] pod created
+I0908 21:16:52.016339       1 pod.go:44] pod created
+I0908 21:16:52.016342       1 pod.go:44] pod created
+I0908 21:16:52.016346       1 pod.go:44] pod created
+I0908 21:16:52.016349       1 pod.go:44] pod created
+I0908 21:16:52.016354       1 pod.go:44] pod created
+I0908 21:16:52.016357       1 pod.go:44] pod created
+I0908 21:16:52.016361       1 pod.go:44] pod created
+I0908 21:16:52.016364       1 pod.go:44] pod created
+I0908 21:16:52.016368       1 pod.go:44] pod created
+I0908 21:16:52.016371       1 pod.go:44] pod created
+I0908 21:16:52.016376       1 pod.go:44] pod created
+I0908 21:16:52.016379       1 pod.go:44] pod created
+I0908 21:16:52.016383       1 pod.go:44] pod created
+I0908 21:16:52.016386       1 pod.go:44] pod created
+I0908 21:16:52.016390       1 pod.go:44] pod created
+I0908 21:16:52.016394       1 pod.go:44] pod created
+I0908 21:16:52.016398       1 pod.go:44] pod created
+I0908 21:16:52.016401       1 pod.go:44] pod created
+I0908 21:16:52.016405       1 pod.go:44] pod created
+I0908 21:16:52.016418       1 pod.go:44] pod created
+I0908 21:16:52.016432       1 pod.go:44] pod created
+I0908 21:16:52.016436       1 pod.go:44] pod created
+I0908 21:16:52.016440       1 pod.go:44] pod created
+I0908 21:16:52.016443       1 pod.go:44] pod created
+I0908 21:16:52.016447       1 pod.go:44] pod created
+I0908 21:16:52.016450       1 pod.go:44] pod created
+I0908 21:16:52.016454       1 pod.go:44] pod created
+I0908 21:16:52.017137       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/pods?allowWatchBookmarks=true&resourceVersion=8225838&timeout=5m46s&timeoutSeconds=346&watch=true 200 OK in 1 milliseconds
+I0908 21:16:52.075236       1 shared_informer.go:270] caches populated
+I0908 21:16:52.075257       1 pod.go:72] pod cache synchronized. Took 500.232504ms
+I0908 21:16:52.075263       1 pod.go:79] pod watcher started !!
+I0908 21:16:52.075269       1 mic.go:350] pod client started
+I0908 21:16:52.157701       1 request.go:581] Throttling request took 581.896448ms, request: GET:https://10.0.0.1:443/api/v1/nodes?limit=500&resourceVersion=0
+I0908 21:16:52.160608       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/nodes?limit=500&resourceVersion=0 200 OK in 2 milliseconds
+I0908 21:16:52.164435       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/nodes?allowWatchBookmarks=true&resourceVersion=8225852&timeout=5m29s&timeoutSeconds=329&watch=true 200 OK in 1 milliseconds
+I0908 21:16:52.175722       1 shared_informer.go:270] caches populated
+I0908 21:16:52.175852       1 mic.go:364] node client started
+I0908 21:16:52.175908       1 mic.go:400] sync thread started.
+I0908 21:16:52.175992       1 mic.go:411] received event: 6
+I0908 21:16:52.176106       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176173       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176190       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176200       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176212       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176293       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176310       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176322       1 mic.go:411] received event: 3
+I0908 21:16:52.176329       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176361       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176385       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176394       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176405       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176440       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176454       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176462       1 mic.go:411] received event: 0
+I0908 21:16:52.176485       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176507       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176517       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176523       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176528       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176568       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176582       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176590       1 mic.go:411] received event: 0
+I0908 21:16:52.176594       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176611       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176622       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176636       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176646       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176676       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176709       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176719       1 mic.go:411] received event: 0
+I0908 21:16:52.176725       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176743       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176752       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176758       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176764       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176798       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176811       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176818       1 mic.go:411] received event: 0
+I0908 21:16:52.176822       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176838       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176848       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176857       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176862       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176890       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176902       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176909       1 mic.go:411] received event: 0
+I0908 21:16:52.176913       1 shared_informer.go:270] caches populated
+I0908 21:16:52.176928       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.176938       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.176944       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.176949       1 mic.go:448] number of identities: 1
+I0908 21:16:52.176977       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.176988       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.176995       1 mic.go:411] received event: 0
+I0908 21:16:52.177000       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177016       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177028       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177036       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177041       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177074       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177086       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177093       1 mic.go:411] received event: 0
+I0908 21:16:52.177097       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177120       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177133       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177140       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177145       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177174       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177186       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177193       1 mic.go:411] received event: 0
+I0908 21:16:52.177198       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177212       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177222       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177230       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177236       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177264       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177276       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177283       1 mic.go:411] received event: 0
+I0908 21:16:52.177288       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177302       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177311       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177317       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177322       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177356       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177367       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177374       1 mic.go:411] received event: 0
+I0908 21:16:52.177379       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177397       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177408       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177416       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177421       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177448       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177460       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177467       1 mic.go:411] received event: 0
+I0908 21:16:52.177472       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177486       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177496       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177501       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177506       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177536       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177547       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177554       1 mic.go:411] received event: 0
+I0908 21:16:52.177559       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177572       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177582       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177590       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177596       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177630       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177638       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177644       1 mic.go:411] received event: 0
+I0908 21:16:52.177649       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177675       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177689       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177695       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177700       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177726       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177737       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177745       1 mic.go:411] received event: 0
+I0908 21:16:52.177749       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177768       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177778       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177786       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177791       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177817       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177847       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177856       1 mic.go:411] received event: 0
+I0908 21:16:52.177862       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177881       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177892       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177898       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177903       1 mic.go:448] number of identities: 1
+I0908 21:16:52.177937       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.177949       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.177956       1 mic.go:411] received event: 0
+I0908 21:16:52.177960       1 shared_informer.go:270] caches populated
+I0908 21:16:52.177976       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.177986       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.177994       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.177999       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178026       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178038       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178045       1 mic.go:411] received event: 0
+I0908 21:16:52.178050       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178064       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178072       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178078       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178095       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178187       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178204       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178212       1 mic.go:411] received event: 0
+I0908 21:16:52.178221       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178245       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178258       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178267       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178274       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178315       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178329       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178337       1 mic.go:411] received event: 0
+I0908 21:16:52.178342       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178361       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178372       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178379       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178385       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178418       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178431       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178439       1 mic.go:411] received event: 0
+I0908 21:16:52.178445       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178473       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178481       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178490       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178499       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178526       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178538       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178545       1 mic.go:411] received event: 0
+I0908 21:16:52.178555       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178570       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178578       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178584       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178589       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178620       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178633       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178643       1 mic.go:411] received event: 0
+I0908 21:16:52.178648       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178662       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178671       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178679       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178684       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178722       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178737       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178744       1 mic.go:411] received event: 0
+I0908 21:16:52.178749       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178764       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178772       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178778       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178783       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178817       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178830       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178837       1 mic.go:411] received event: 0
+I0908 21:16:52.178842       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178858       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178866       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178875       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178884       1 mic.go:448] number of identities: 1
+I0908 21:16:52.178918       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.178931       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.178938       1 mic.go:411] received event: 0
+I0908 21:16:52.178942       1 shared_informer.go:270] caches populated
+I0908 21:16:52.178957       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.178965       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.178971       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.178976       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179001       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179015       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179022       1 mic.go:411] received event: 0
+I0908 21:16:52.179027       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179041       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179046       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179054       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179059       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179085       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179098       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179105       1 mic.go:411] received event: 0
+I0908 21:16:52.179109       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179123       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179129       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179134       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179139       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179169       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179181       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179189       1 mic.go:411] received event: 0
+I0908 21:16:52.179195       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179213       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179219       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179226       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179232       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179258       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179270       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179277       1 mic.go:411] received event: 0
+I0908 21:16:52.179281       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179297       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179303       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179309       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179314       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179341       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179349       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179355       1 mic.go:411] received event: 0
+I0908 21:16:52.179359       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179372       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179377       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179385       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179390       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179424       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179438       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179445       1 mic.go:411] received event: 0
+I0908 21:16:52.179449       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179481       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179488       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179494       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179499       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179533       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179545       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179552       1 mic.go:411] received event: 0
+I0908 21:16:52.179556       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179571       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179583       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179596       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179601       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179628       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179635       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179642       1 mic.go:411] received event: 0
+I0908 21:16:52.179658       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179680       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179691       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179698       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179703       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179755       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179768       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179775       1 mic.go:411] received event: 0
+I0908 21:16:52.179780       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179795       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179801       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179813       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179819       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179847       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179860       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179868       1 mic.go:411] received event: 0
+I0908 21:16:52.179873       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179888       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179894       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.179900       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.179905       1 mic.go:448] number of identities: 1
+I0908 21:16:52.179940       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.179953       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.179961       1 mic.go:411] received event: 0
+I0908 21:16:52.179965       1 shared_informer.go:270] caches populated
+I0908 21:16:52.179991       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.179996       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180007       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180012       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180065       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180091       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.180099       1 mic.go:411] received event: 0
+I0908 21:16:52.180104       1 shared_informer.go:270] caches populated
+I0908 21:16:52.180121       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.180128       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180134       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180142       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180171       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180185       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.180192       1 mic.go:411] received event: 0
+I0908 21:16:52.180197       1 shared_informer.go:270] caches populated
+I0908 21:16:52.180213       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.180218       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180227       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180233       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180261       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180275       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.180282       1 mic.go:411] received event: 0
+I0908 21:16:52.180287       1 shared_informer.go:270] caches populated
+I0908 21:16:52.180303       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.180309       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180315       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180321       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180356       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180370       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.180378       1 mic.go:411] received event: 0
+I0908 21:16:52.180383       1 shared_informer.go:270] caches populated
+I0908 21:16:52.180426       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.180432       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180439       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180444       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180489       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180505       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:52.180512       1 mic.go:411] received event: 0
+I0908 21:16:52.180517       1 shared_informer.go:270] caches populated
+I0908 21:16:52.180544       1 crd.go:592] appending binding: lyft-poc/lyft-worker-poc-binding to list.
+I0908 21:16:52.180555       1 mic.go:443] number of bindings: 1
+I0908 21:16:52.180575       1 crd.go:678] appending AzureIdentity lyft-poc/lyft-worker-poc to list.
+I0908 21:16:52.180580       1 mic.go:448] number of identities: 1
+I0908 21:16:52.180609       1 mic.go:459] number of assigned identities: 0
+I0908 21:16:52.180621       1 mic.go:483] del: map[], add: map[], update: map[]
+I0908 21:16:55.521925       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 8 milliseconds
+I0908 21:16:55.529363       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 7 milliseconds
+I0908 21:16:55.529455       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:16:59.286596       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:16:59.292895       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:16:59.293035       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:03.047955       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:17:03.065533       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 17 milliseconds
+I0908 21:17:03.065659       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:06.824591       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 7 milliseconds
+I0908 21:17:06.836995       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 12 milliseconds
+I0908 21:17:06.837239       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:10.592250       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:17:10.597884       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:10.597986       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:14.353250       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:17:14.359278       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:14.359414       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:18.115922       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:18.121415       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:18.121657       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:21.876887       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:17:21.936107       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 58 milliseconds
+I0908 21:17:21.936342       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:22.015948       1 reflector.go:369] pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156: forcing resync
+I0908 21:17:25.693084       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:25.698301       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:25.698379       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:29.461669       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 11 milliseconds
+I0908 21:17:29.468188       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:29.468331       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:33.233213       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 14 milliseconds
+I0908 21:17:33.238902       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:33.239144       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:36.996581       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:37.003320       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:37.003408       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:40.760268       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:40.765999       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:40.766215       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:44.523503       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:44.533160       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 9 milliseconds
+I0908 21:17:44.533346       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:48.291399       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 7 milliseconds
+I0908 21:17:48.297760       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:48.297847       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:52.016722       1 reflector.go:369] pkg/mod/k8s.io/client-go@v0.19.6/tools/cache/reflector.go:156: forcing resync
+I0908 21:17:52.054983       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 5 milliseconds
+I0908 21:17:52.133385       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 78 milliseconds
+I0908 21:17:52.133572       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:55.895648       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 11 milliseconds
+I0908 21:17:55.902604       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:55.902843       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic
+I0908 21:17:59.659934       1 round_trippers.go:444] GET https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 4 milliseconds
+I0908 21:17:59.666341       1 round_trippers.go:444] PUT https://10.0.0.1:443/api/v1/namespaces/default/endpoints/aad-pod-identity-mic 200 OK in 6 milliseconds
+I0908 21:17:59.666607       1 leaderelection.go:273] successfully renewed lease default/aad-pod-identity-mic

@@ -1,0 +1,13 @@
+# Add Cluster Role Binding to the View Cluster Role for view access
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: developer-view
+subjects:
+- kind: User
+  name: 01637e9f-e09c-44ae-874b-63186daa008c
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: view
+  apiGroup: rbac.authorization.k8s.io
