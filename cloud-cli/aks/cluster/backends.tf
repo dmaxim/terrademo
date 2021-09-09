@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    organization = "seti-demo"
+    organization = "mxinfo-demo"
 
     workspaces {
-      name = "k8s-poc"
+      name = "k8s-testing"
     }
   }
 

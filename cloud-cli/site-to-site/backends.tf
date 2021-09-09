@@ -3,7 +3,9 @@ terraform {
     organization = "mxinfo-demo"
 
     workspaces {
-      name = "k8s-testing-config"
+      name = "site-to-site"
     }
   }
+
+
 }

@@ -1,7 +1,7 @@
 # Get the resource group id for the cluster nodes
 ````
-export CLUSTER_RESOURCE_GROUP=rg-seti-k8s-poc
-export CLUSTER_NAME=aks-seti-k8s-poc
+export CLUSTER_RESOURCE_GROUP=rg-mxtest-demo
+export CLUSTER_NAME=aks-mxtest-demo
 export NODE_GROUP=$(az aks show -g ${CLUSTER_RESOURCE_GROUP} -n ${CLUSTER_NAME} --query nodeResourceGroup -o tsv)
 export NODES_RESOURCE_ID=$(az group show -n $NODE_GROUP -o tsv --query "id")
 echo $NODES_RESOURCE_ID
@@ -12,8 +12,7 @@ echo $NODES_RESOURCE_ID
 # Get the Service Principal ID
 
 ````
-export IDENTITY_NAME=aks-seti-k8s-poc-agentpool
-export IDENTITY_PRINCIPAL_ID
+export IDENTITY_NAME=aks-mxtest-demo-agentpool
 export IDENTITY_PRINCIPAL_ID=$(az identity show -n ${IDENTITY_NAME} -g ${NODE_GROUP} --query principalId -o tsv)
 echo $IDENTITY_PRINCIPAL_ID
 ````
