@@ -21,3 +21,23 @@ resource "azurerm_subnet" "private_subnet" {
   virtual_network_name = azurerm_virtual_network.wan.name
 
 }
+
+# Create Network Security Group
+resource "azurerm_network_security_group" "private_subnet" {
+  name                = join("-", ["nsg", "private", var.namespace, var.environment])
+  resource_group_name = var.resource_group_name
+  location            = var.location
+
+
+  # security_rule {
+  #   name                       = "SQL-HC"
+  #   priority                   = 300
+  #   direction                  = "Inbound"
+  #   access                     = "Allow"
+  #   protocol                   = "Tcp"
+  #   source_port_range          = "*"
+  #   destination_port_range     = 80
+  #   source_address_prefix      = "*"
+  #   destination_address_prefix = "*"
+  # }
+}
