@@ -41,3 +41,10 @@ resource "azurerm_network_security_group" "private_subnet" {
   #   destination_address_prefix = "*"
   # }
 }
+
+
+resource "azurerm_subnet_network_security_group_association" "private_subnet" {
+  subnet_id                 = azurerm_subnet.private_subnet.id
+  network_security_group_id = azurerm_network_security_group.private_subnet.id
+}
+

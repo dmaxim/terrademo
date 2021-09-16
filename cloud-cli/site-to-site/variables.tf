@@ -17,40 +17,51 @@ variable "environment" {
 
 
 variable "vnet_address_space" {
-  type = string
+  type        = string
   description = "Address space for the WAN Vnet"
 }
 
 variable "gateway_subnet_address_prefix" {
-  type = string
+  type        = string
   description = "Gateway Subnet address space"
 }
 
 
 variable "private_subnet_address_prefix" {
-  type = string
+  type        = string
   description = "Private Subnet address space"
 }
 
 variable "local_vpn_address" {
-  type = string
+  type        = string
   description = "Local external ip address"
 }
 
 variable "local_address_space" {
-  type = string
+  type        = string
   description = "Local network address space"
 }
 
-variable "public_ssh_key" { 
-  type = string
-  sensitive = true
+variable "public_ssh_key" {
+  type        = string
+  sensitive   = true
   description = "Public SSH Key for remote access to vm"
-  
+
 }
 
 variable "vpn_shared_key" {
-  type = string
-  sensitive = true
+  type        = string
+  sensitive   = true
   description = "IPSec shared key used by local vpn router and azure network gateway"
+}
+
+
+variable "bastion_subnet_address_prefix" {
+  type        = string
+  description = "Address space for the bastion host"
+}
+
+variable "whitelisted_ip_address" {
+  type        = string
+  description = "IP Address to allow access to the bastion host"
 }
