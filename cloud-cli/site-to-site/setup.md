@@ -25,3 +25,17 @@ External IP
 Address Space:
 192.168.2.0/24?
 
+
+
+## Create a reader
+
+
+Add reader role
+az role assignment create --assignee <id> --role Reader --scope /subscriptions/<subscriptionid>
+
+az ad sp create-for-rbac --skip-assignment --name 
+
+az ad sp create-for-rbac --skip-assignment --name https://delete-me-mx
+
+
+

@@ -53,13 +53,22 @@ resource "azurerm_virtual_network_gateway" "wan" {
   }
 }
 
-# Create local network gateway
-resource "azurerm_local_network_gateway" "home" {
-  name                = join("-", ["lng", var.namespace, var.environment])
-  location            = azurerm_resource_group.wan.location
-  resource_group_name = azurerm_resource_group.wan.name
-  gateway_address     = var.local_vpn_address
-  address_space       = [var.local_address_space]
+#Create local network gateway - this should be deleted
+# resource "azurerm_local_network_gateway" "home" {
+#   name                = join("-", ["lng", var.namespace, var.environment])
+#   location            = azurerm_resource_group.wan.location
+#   resource_group_name = azurerm_resource_group.wan.name
+#   gateway_address     = var.local_vpn_address
+#   address_space       = [var.local_address_space]
+# }
+
+# Create the meraki gateway
+resource "azurerm_local_network_gateway" "meraki" {
+  name = "mxinfo-meraki"
+  location = azurerm_resource_group.wan.location
+  resource_group_name =  azurerm_resource_group.wan.name
+  gateway_address =  var.local_vpn_address
+  address_space = [var.local_address_space]
 }
 
 # Create the connection
@@ -71,7 +80,7 @@ resource "azurerm_local_network_gateway" "home" {
 
 #   type                       = "IPSec"
 #   virtual_network_gateway_id = azurerm_virtual_network_gateway.wan.id
-#   local_network_gateway_id   = azurerm_local_network_gateway.home.id
+#   local_network_gateway_id   = azurerm_local_network_gateway.meraki.id
 
 #   shared_key = var.vpn_shared_key
 # }
