@@ -7,6 +7,10 @@ output "private_subnet_id" {
   value = azurerm_subnet.private_subnet.id
 }
 
+output "public_subnet_id" {
+  value = azurerm_subnet.public_subnet.id
+}
+
 output "virtual_network_name" {
   value = azurerm_virtual_network.wan.name
 }

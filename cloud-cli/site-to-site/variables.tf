@@ -32,6 +32,11 @@ variable "private_subnet_address_prefix" {
   description = "Private Subnet address space"
 }
 
+variable "public_subnet_address_prefix" {
+  type        = string
+  description = "Public Subnet address space"
+}
+
 variable "local_vpn_address" {
   type        = string
   description = "Local external ip address"
@@ -64,4 +69,38 @@ variable "bastion_subnet_address_prefix" {
 variable "whitelisted_ip_address" {
   type        = string
   description = "IP Address to allow access to the bastion host"
+}
+
+variable "audit_storage_account" {
+  type        = string
+  description = "SQL Server Audit Storage account name"
+}
+
+variable "audit_storage_account_tier" {
+  type        = string
+  description = "SQL Server Audit Storage account tier"
+}
+
+variable "replication_type" {
+  type        = string
+  description = "Audit storage account replication type"
+}
+
+variable "sql_admin" {
+  type        = string
+  sensitive   = true
+  description = "SQL Admin account"
+}
+
+variable "sql_admin_password" {
+  type        = string
+  sensitive   = true
+  description = "SA Account for SQL server"
+}
+
+
+variable "entity_context" {
+  type = string
+  sensitive = true
+  description = "Database connection string for the entity context"
 }

@@ -22,6 +22,23 @@ resource "azurerm_subnet" "private_subnet" {
 
 }
 
+resource "azurerm_subnet" "public_subnet" {
+  name                 = "PublicSubnet"
+  resource_group_name  = var.resource_group_name
+  address_prefixes     = [var.public_subnet_address_prefix]
+  virtual_network_name = azurerm_virtual_network.wan.name
+
+
+  delegation {
+    name = join("-", ["delegation", var.namespace, var.environment])
+
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
+}
+
 # Create Network Security Group
 resource "azurerm_network_security_group" "private_subnet" {
   name                = join("-", ["nsg", "private", var.namespace, var.environment])

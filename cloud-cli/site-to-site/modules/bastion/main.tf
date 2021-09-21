@@ -115,7 +115,7 @@ resource "azurerm_network_security_rule" "bastion_host_inbound" {
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = [8080,5071]
+  destination_port_ranges     = [8080, 5071]
   source_address_prefix       = "VirtualNetwork"
   destination_address_prefix  = "VirtualNetwork"
 }
@@ -131,7 +131,7 @@ resource "azurerm_network_security_rule" "bastion_ssh_rdp_outbound" {
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = [22,3389]
+  destination_port_ranges     = [22, 3389]
   source_address_prefix       = "*"
   destination_address_prefix  = "VirtualNetwork"
 }
@@ -160,7 +160,7 @@ resource "azurerm_network_security_rule" "bastion_communcation_outbound" {
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = [8080,5701]
+  destination_port_ranges     = [8080, 5701]
   source_address_prefix       = "VirtualNetwork"
   destination_address_prefix  = "VirtualNetwork"
 }

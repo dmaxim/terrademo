@@ -20,6 +20,7 @@ module "network" {
   vnet_address_space            = var.vnet_address_space
   gateway_subnet_address_prefix = var.gateway_subnet_address_prefix
   private_subnet_address_prefix = var.private_subnet_address_prefix
+  public_subnet_address_prefix  = var.public_subnet_address_prefix
 }
 
 
@@ -64,11 +65,11 @@ resource "azurerm_virtual_network_gateway" "wan" {
 
 # Create the meraki gateway
 resource "azurerm_local_network_gateway" "meraki" {
-  name = "mxinfo-meraki"
-  location = azurerm_resource_group.wan.location
-  resource_group_name =  azurerm_resource_group.wan.name
-  gateway_address =  var.local_vpn_address
-  address_space = [var.local_address_space]
+  name                = "mxinfo-meraki"
+  location            = azurerm_resource_group.wan.location
+  resource_group_name = azurerm_resource_group.wan.name
+  gateway_address     = var.local_vpn_address
+  address_space       = [var.local_address_space]
 }
 
 # Create the connection
@@ -158,7 +159,7 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
 
 #   ip_configuration {
 #     name                          = "private"
-#     subnet_id                     = module.network.private_subnet_id
+#     subnet_id                     = module.network.public_subnet_id
 #     private_ip_address_allocation = "Dynamic"
 #   }
 # }
@@ -206,4 +207,36 @@ module "bastion_host" {
   bastion_subnet_address_prefix = var.bastion_subnet_address_prefix
   virtual_network_name          = module.network.virtual_network_name
   inbound_ip_address            = var.whitelisted_ip_address
+}
+
+
+# Create an App Service in a public subnet
+
+module "app_service" {
+  source                = "./modules/app-service"
+  resource_group_name   = azurerm_resource_group.wan.name
+  location              = azurerm_resource_group.wan.location
+  namespace             = var.namespace
+  environment           = var.environment
+  app_service_subnet_id = module.network.public_subnet_id
+  entity_context        = var.entity_context
+}
+
+# Create an Azure SQL Instance in the private subnet
+
+module "mssql" {
+  source                     = "./modules/mssql"
+  namespace                  = var.namespace
+  environment                = var.environment
+  resource_group_name        = azurerm_resource_group.wan.name
+  location                   = azurerm_resource_group.wan.location
+  audit_storage_account      = var.audit_storage_account
+  audit_storage_account_tier = var.audit_storage_account_tier
+  replication_type           = var.replication_type
+  sql_server_version         = "12.0"
+  sql_admin                  = var.sql_admin
+  sql_admin_password         = var.sql_admin_password
+  private_subnet_id          = module.network.private_subnet_id
+  whitelisted_ip_address     = var.whitelisted_ip_address
+  databases                  = local.sql_databases
 }
