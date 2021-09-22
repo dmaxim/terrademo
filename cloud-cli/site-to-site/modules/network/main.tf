@@ -22,7 +22,7 @@ resource "azurerm_subnet" "private_subnet" {
 
   enforce_private_link_endpoint_network_policies = true
 
-  service_endpoints = ["Microsoft.Sql"]
+  service_endpoints = ["Microsoft.Sql", "Microsoft.Storage"] # Service endpoints are required for network integration
 }
 
 resource "azurerm_subnet" "public_subnet" {
