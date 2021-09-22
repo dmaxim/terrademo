@@ -267,3 +267,11 @@ module "asb" {
   asb_sku             = var.asb_sku
   topics              = local.asb_topics
 }
+
+
+module "asb_subscription" {
+  source                 = "./modules/asb-subscription"
+  subscriptions          = local.topic_subscriptions
+  azure_service_bus_name = module.asb.azure_service_bus_name
+  resource_group_name    = azurerm_resource_group.asb.name
+}
