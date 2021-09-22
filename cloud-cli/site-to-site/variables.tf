@@ -100,7 +100,13 @@ variable "sql_admin_password" {
 
 
 variable "entity_context" {
-  type = string
-  sensitive = true
+  type        = string
+  sensitive   = true
   description = "Database connection string for the entity context"
+}
+
+variable "asb_sku" {
+  type        = string
+  default     = "Standard"
+  description = "SKU for the Azure Service Bus Namespace"
 }

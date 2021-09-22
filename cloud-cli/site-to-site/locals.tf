@@ -5,4 +5,9 @@ locals {
       service_objective = "S0"
     }
   }
+  asb_topics = {
+    demo_event = {
+      name = "demoevent"
+    }
+  }
 }

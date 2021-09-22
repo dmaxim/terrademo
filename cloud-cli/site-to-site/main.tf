@@ -240,3 +240,30 @@ module "mssql" {
   whitelisted_ip_address     = var.whitelisted_ip_address
   databases                  = local.sql_databases
 }
+
+
+# Create Azure Service Bus in another resource group
+
+
+resource "azurerm_resource_group" "asb" {
+  name     = join("-", ["rg", "asb", var.namespace, var.environment])
+  location = var.location
+
+  tags = {
+    environment = var.environment
+  }
+}
+
+
+
+// ASB
+
+module "asb" {
+  source              = "./modules/asb"
+  namespace           = var.namespace
+  location            = azurerm_resource_group.asb.location
+  resource_group_name = azurerm_resource_group.asb.name
+  environment         = var.environment
+  asb_sku             = var.asb_sku
+  topics              = local.asb_topics
+}
