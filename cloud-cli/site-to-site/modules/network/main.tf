@@ -20,6 +20,9 @@ resource "azurerm_subnet" "private_subnet" {
   address_prefixes     = [var.private_subnet_address_prefix]
   virtual_network_name = azurerm_virtual_network.wan.name
 
+  enforce_private_link_endpoint_network_policies = true
+
+  service_endpoints = ["Microsoft.Sql"]
 }
 
 resource "azurerm_subnet" "public_subnet" {
