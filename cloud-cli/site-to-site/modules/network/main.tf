@@ -40,6 +40,8 @@ resource "azurerm_subnet" "public_subnet" {
       actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
     }
   }
+
+  service_endpoints = ["Microsoft.Storage"] # Service endpoints are required for network integration
 }
 
 # Create Network Security Group

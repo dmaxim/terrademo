@@ -112,7 +112,13 @@ variable "asb_sku" {
 }
 
 variable "azure_storage_connection" {
-  type = string
+  type        = string
   description = "Connection string to Azure Storage for message queue"
-  sensitive = true
+  sensitive   = true
+}
+
+variable "azure_service_bus_connection" {
+  type        = string
+  description = "Connection string for Azure Service Bus"
+  sensitive   = true
 }

@@ -10,3 +10,5 @@ variable "location" {}
 variable "storage_queue_name" {}
 
 variable "private_subnet_id" {}
+
+variable "whitelisted_ip_address" {}

@@ -10,3 +10,7 @@ variable "entity_context" {
 variable "azure_storage_connection" {
   sensitive = true
 }
+
+variable "azure_service_bus_connection" {
+  sensitive = true
+}

@@ -213,14 +213,15 @@ module "bastion_host" {
 # Create an App Service in a public subnet
 
 module "app_service" {
-  source                = "./modules/app-service"
-  resource_group_name   = azurerm_resource_group.wan.name
-  location              = azurerm_resource_group.wan.location
-  namespace             = var.namespace
-  environment           = var.environment
-  app_service_subnet_id = module.network.public_subnet_id
-  entity_context        = var.entity_context
-  azure_storage_connection = var.azure_storage_connection
+  source                       = "./modules/app-service"
+  resource_group_name          = azurerm_resource_group.wan.name
+  location                     = azurerm_resource_group.wan.location
+  namespace                    = var.namespace
+  environment                  = var.environment
+  app_service_subnet_id        = module.network.public_subnet_id
+  entity_context               = var.entity_context
+  azure_storage_connection     = var.azure_storage_connection
+  azure_service_bus_connection = var.azure_service_bus_connection
 }
 
 # Create an Azure SQL Instance in the private subnet
@@ -280,12 +281,24 @@ module "asb_subscription" {
 
 // Storage queue
 
-module "storage_queue" {
-  source                = "./modules/storage-queue"
-  storage_queue_account = "wanmessaging"
-  location              = azurerm_resource_group.asb.location
-  resource_group_name   = azurerm_resource_group.asb.name
-  storage_queue_name    = "demoevent"
-  private_subnet_id = module.network.private_subnet_id
-  // Type General Purpose V1 or V2?
-}
+# module "storage_queue" {
+#   source                = "./modules/storage-queue"
+#   storage_queue_account = "wanmessaging"
+#   location              = azurerm_resource_group.asb.location
+#   resource_group_name   = azurerm_resource_group.asb.name
+#   storage_queue_name    = "demoevent"
+#   private_subnet_id = module.network.private_subnet_id
+#   // Type General Purpose V1 or V2?
+# }
+
+
+ module "storage_queue" {
+   source                = "./modules/storage-queue"
+   storage_queue_account = "wanmessaging2"
+   location              = azurerm_resource_group.asb.location
+   resource_group_name   = azurerm_resource_group.asb.name
+   storage_queue_name    = "demoevent"
+   private_subnet_id = module.network.private_subnet_id
+   whitelisted_ip_address = var.whitelisted_ip_address
+   // Type General Purpose V1 or V2?
+ }

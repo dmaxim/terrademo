@@ -35,6 +35,7 @@ resource "azurerm_app_service" "app-service-test" {
     "WEBSITE_RUN_FROM_PACKAGE"            = "1",
     "EntityContext"                       = var.entity_context,
     "AzureStorage"                        = var.azure_storage_connection
+    "ServiceBus"                          = var.azure_service_bus_connection
   }
 
   site_config {

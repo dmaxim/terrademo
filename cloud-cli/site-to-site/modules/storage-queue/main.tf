@@ -8,7 +8,8 @@ resource "azurerm_storage_account" "queue" {
   account_replication_type = "LRS"
 
   network_rules {
-    default_action = "Deny"
+    ip_rules = [var.whitelisted_ip_address]
+    default_action             = "Deny"
     virtual_network_subnet_ids = [var.private_subnet_id]
   }
 }
