@@ -220,6 +220,7 @@ module "app_service" {
   environment           = var.environment
   app_service_subnet_id = module.network.public_subnet_id
   entity_context        = var.entity_context
+  azure_storage_connection = var.azure_storage_connection
 }
 
 # Create an Azure SQL Instance in the private subnet

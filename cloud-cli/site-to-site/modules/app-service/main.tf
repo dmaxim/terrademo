@@ -33,7 +33,8 @@ resource "azurerm_app_service" "app-service-test" {
     "WEBSITE_HEALTHCHECK_MAXPINGFAILURES" = "10",
     "WEBSITE_NODE_DEFAULT_VERSION"        = "6.9.1",
     "WEBSITE_RUN_FROM_PACKAGE"            = "1",
-    "EntityContext"                       = var.entity_context
+    "EntityContext"                       = var.entity_context,
+    "AzureStorage"                        = var.azure_storage_connection
   }
 
   site_config {

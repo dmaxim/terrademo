@@ -110,3 +110,9 @@ variable "asb_sku" {
   default     = "Standard"
   description = "SKU for the Azure Service Bus Namespace"
 }
+
+variable "azure_storage_connection" {
+  type = string
+  description = "Connection string to Azure Storage for message queue"
+  sensitive = true
+}
