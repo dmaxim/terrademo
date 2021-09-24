@@ -1,7 +1,7 @@
 variable "namespace" {
   type        = string
   description = "Namespace for all resources"
-  default = "move-old"
+  default = "move-new"
 }
 
 

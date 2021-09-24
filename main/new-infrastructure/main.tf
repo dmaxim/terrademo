@@ -23,7 +23,6 @@ resource "azurerm_application_insights" "demo" {
   name = join("-", ["appi", var.namespace, var.environment])
   resource_group_name          = azurerm_resource_group.demo.name
   location                     = azurerm_resource_group.demo.location
-  appliation_type = "web"
+  application_type = "web"
 }
 
-# Add a certificate for TLS

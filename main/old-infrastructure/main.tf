@@ -28,3 +28,12 @@ module "app_service" {
    storage_queue_name    = "demoevent"
    
  }
+
+ # App Insights
+resource "azurerm_application_insights" "demo" {
+  name = join("-", ["appi", var.namespace, var.environment])
+  resource_group_name          = azurerm_resource_group.demo.name
+  location                     = azurerm_resource_group.demo.location
+  application_type = "web"
+}
+
