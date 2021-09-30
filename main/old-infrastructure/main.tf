@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "demo" {
 # Create App Service Plan with app services
 
 module "app_service" {
-  source                       = "./modules/app-service"
+  source                       = "./modules//app-service"
   resource_group_name          = azurerm_resource_group.demo.name
   location                     = azurerm_resource_group.demo.location
   namespace                    = var.namespace
@@ -37,3 +37,13 @@ resource "azurerm_application_insights" "demo" {
   application_type = "web"
 }
 
+
+# Create second app service plan with App Service
+
+module "app_service_two" {
+  source                       = "./modules/app-service"
+  resource_group_name          = azurerm_resource_group.demo.name
+  location                     = azurerm_resource_group.demo.location
+  namespace                    = join("-", [var.namespace, "02"])
+  environment                  = var.environment
+}
