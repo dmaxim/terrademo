@@ -23,6 +23,9 @@ resource "azurerm_app_service" "app-service-test" {
   resource_group_name = var.resource_group_name
   location            = var.location
   app_service_plan_id = azurerm_app_service_plan.app-service-test.id
+  https_only = true
+  min_tls_version = "1.3"
+  ftps_state = "Disabled"
 
   identity {
     type = "SystemAssigned"
