@@ -88,9 +88,9 @@ resource "azurerm_mssql_job_credential" "example" {
 
 # Firewall Rules
 resource "azurerm_sql_firewall_rule" "demo" {
-  name  = "dm-home"
+  name                = "dm-home"
   resource_group_name = var.resource_group_name
-  server_name = azurerm_sql_server.demo_shared.name
-  start_ip_address = var.whitelist_ip_address
-  end_ip_address = var.whitelist_ip_address
+  server_name         = azurerm_sql_server.demo_shared.name
+  start_ip_address    = var.whitelist_ip_address
+  end_ip_address      = var.whitelist_ip_address
 }
