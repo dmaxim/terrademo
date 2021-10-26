@@ -16,10 +16,10 @@ resource "azurerm_storage_account" "queue" {
 
 // Create a test queue
 
-resource "azurerm_storage_queue" "demo" {
-  name                 = var.storage_queue_name
-  storage_account_name = azurerm_storage_account.queue.name
-}
+# resource "azurerm_storage_queue" "demo" {
+#   name                 = var.storage_queue_name
+#   storage_account_name = azurerm_storage_account.queue.name
+# }
 
 
 
