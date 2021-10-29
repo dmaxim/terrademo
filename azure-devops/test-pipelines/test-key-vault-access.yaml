@@ -5,6 +5,12 @@ pool:
 
 steps:
 
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'MxInfo Microsoft Partner Network(bb0c99b7-d44d-413a-b294-564466712637)'
+    KeyVaultName: 'kv-mxinfo-devops-infra'
+    SecretsFilter: '*'
+    RunAsPreJob: false
 - task: CmdLine@2
   inputs:
     script: 'echo $(db-admin-user-name)'
