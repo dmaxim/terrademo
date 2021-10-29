@@ -1,0 +1,10 @@
+trigger: none
+
+pool:
+  name: DevOpsLocal
+
+steps:
+
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(db-admin-user-name)'
