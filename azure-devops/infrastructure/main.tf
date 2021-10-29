@@ -19,10 +19,17 @@ resource "azurerm_storage_account" "dev_ops" {
   account_tier              = "Standard"
   account_replication_type  = "LRS"
   enable_https_traffic_only = true
+  
 
   tags = {
     Environment = var.environment
   }
+}
+
+resource "azurerm_storage_encryption_scope" "dev_ops" {
+    name = "microsoftmanaged"
+    storage_account_id = azurerm_storage_account.dev_ops.id
+    source = "Microsoft.Storage"
 }
 
 
