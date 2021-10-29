@@ -13,4 +13,15 @@ steps:
     RunAsPreJob: false
 - task: CmdLine@2
   inputs:
-    script: 'echo $(db-admin-user-name)'
+    script: 'echo $(db-admin-user-name) > secret.txt'
+
+- task: CopyFiles@2
+  inputs:
+   Contents: secret.txt
+   TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  
+- task: PublishBuildArtifacts@1
+  inputs:
+   PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+   ArtifactName: 'drop'
+   publishLocation: 'Container'
