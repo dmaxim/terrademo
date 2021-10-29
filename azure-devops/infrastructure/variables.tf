@@ -21,3 +21,21 @@ variable "environment" {
   description = "Environment tag for all resources"
   default     = "infra"
 }
+
+variable "tenant_id" {
+    type = string
+    description = "Azure AD Tenant Id"
+}
+
+variable "dev_ops_admin_user" {
+    type = string
+    description = "User to grant access to the Terraform Key Vault"
+}
+
+# Service principal for RBAC
+
+variable "dev_ops_principal_name" {
+    type = string
+    description = "Service principal used in DevOps pipelines"
+}
+
