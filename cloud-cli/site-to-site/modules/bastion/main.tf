@@ -1,12 +1,14 @@
 
 # Add a bastion host to a vnet
 
+/*no
 resource "azurerm_subnet" "bastion" {
   name                 = "AzureBastionSubnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.virtual_network_name
   address_prefixes     = [var.bastion_subnet_address_prefix]
 }
+
 
 resource "azurerm_public_ip" "bastion" {
   name                = join("-", ["pip", "bastion", var.namespace, var.environment])
@@ -187,3 +189,4 @@ resource "azurerm_subnet_network_security_group_association" "bastion" {
   network_security_group_id = azurerm_network_security_group.bastion.id
 }
 
+*/

@@ -37,6 +37,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "demo_sql_audit_policy"
   storage_endpoint                        = azurerm_storage_account.demo_sql_server_storage.primary_blob_endpoint
 }
 
+/*
 
 # Create the associated databases
 
@@ -84,3 +85,4 @@ resource "azurerm_sql_firewall_rule" "demo" {
   start_ip_address    = var.whitelisted_ip_address
   end_ip_address      = var.whitelisted_ip_address
 }
+*/
