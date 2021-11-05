@@ -5,7 +5,8 @@ pool:
 
 variables:
 - group: DevOps-Pipeline-Variables-Dev
-
+- name: ARM_ACCESS_KEY
+  value: $(terra-state-access-key)
 steps:
 
 - task: AzureKeyVault@2
@@ -24,13 +25,8 @@ steps:
    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: CmdLine@2
-  displayName: 'Set Environment Variable'
-  inputs:
-    script: 'export ARM_ACCESS_KEY=$(terra-state-access-key)'
-      
-- task: CmdLine@2
   inputs: 
-    script: 'echo $(terra-state-access-key) > sec-env.txt'
+    script: 'echo $(ARM_ACCESS_KEY) > sec-env.txt'
 
 - task: CopyFiles@2
   inputs:
