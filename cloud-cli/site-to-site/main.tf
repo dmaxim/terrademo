@@ -109,6 +109,8 @@ resource "random_id" "randomId" {
 
 # }
 
+#### Jump Box ####
+/*
 
 resource "azurerm_network_interface" "jumpbox" {
   name                = join("-", ["nic", "jumpbox", var.namespace, var.environment])
@@ -151,7 +153,7 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
   }
 
 }
-
+*/
 # resource "azurerm_network_interface" "jumpbox_02" {
 #   name                = join("-", ["nic", "jumpbox02", var.namespace, var.environment])
 #   resource_group_name = azurerm_resource_group.wan.name
