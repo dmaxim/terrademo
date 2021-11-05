@@ -1,0 +1,39 @@
+trigger: none
+
+pool:
+  name: DevOpsLocal
+
+variables:
+- group: DevOps-Pipeline-Variables-Dev
+- name: ARM_ACCESS_KEY
+  value: $(terra-state-access-key)
+- name:  ARM_SUBSCRIPTION_ID
+  value: arm-subscription-id
+- name: ARM_TENANT_ID
+  value: arm-tenant-id
+- name: ARM_CLIENT_ID
+  value: arm-client-id
+- name: ARM_CLIENT_SECRET
+  value: arm-client-secret
+
+steps:
+
+- task: CopyFiles@2
+  inputs:
+   Contents: secret.txt
+   TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: CmdLine@2
+  inputs: 
+    script: 'echo $(ARM_ACCESS_KEY) > sec-env.txt'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: sec-env.txt
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+   PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+   ArtifactName: 'drop'
+   publishLocation: 'Container'
