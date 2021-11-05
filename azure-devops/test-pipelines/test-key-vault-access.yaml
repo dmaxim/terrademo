@@ -25,8 +25,8 @@ steps:
 
 - task: CmdLine@2
   displayName: 'Set Environment Variable'
-  inputs:
-    script: 'export ARM_ACCESS_KEY=$(terra-state-access-key)'
+  env:
+    ARM_ACCESS_KEY: $(terra-state-access-key)
 - task: CmdLine@2
   inputs: 
     script: 'echo $(ARM_ACCESS_KEY) > sec-env.txt'
