@@ -18,6 +18,17 @@ variables:
 
 steps:
 
+- task: TerraformInstaller@0
+  inputs: 
+    terraformVersion: '1.0.6'
+
+- task: CmdLine@2 
+  displayName: 'Terraform Init'
+  inputs : 
+    script: |
+      terraform init
+    workingDirectory: '$(System.DefaultWorkingDirectory)/azure-devops/test-resources'
+    
 - task: CopyFiles@2
   inputs:
    Contents: secret.txt
