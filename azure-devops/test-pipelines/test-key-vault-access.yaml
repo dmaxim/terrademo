@@ -6,7 +6,7 @@ pool:
 variables:
 - group: DevOps-Pipeline-Variables-Dev
 - name:  TF_VAR_ARM_ACCESS_KEY
-  value: $[variables.terra-state-access-key]
+  value: $[variables.db-admin-user-name]
 
 steps:
 
