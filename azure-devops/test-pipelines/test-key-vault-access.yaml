@@ -29,7 +29,7 @@ steps:
     ARM_ACCESS_KEY: $(terra-state-access-key)
 - task: CmdLine@2
   inputs: 
-    script: echo $(ARM_ACCESS_KEY) > sec-env.txt
+    script: echo $ARM_ACCESS_KEY > sec-env.txt
 
 - task: CopyFiles@2
   inputs:
