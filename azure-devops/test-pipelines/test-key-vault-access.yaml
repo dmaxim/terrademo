@@ -28,8 +28,9 @@ steps:
 - task: CmdLine@2
   inputs: 
     script: 'echo $(TF_VAR_ARM_ACCESS_KEY) > sec-env.txt'
+
 - task: CopyFiles@2
-  input:
+  inputs:
     Contents: sec-env.txt
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
