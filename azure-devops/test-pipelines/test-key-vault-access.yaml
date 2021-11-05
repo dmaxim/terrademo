@@ -3,6 +3,11 @@ trigger: none
 pool:
   name: DevOpsLocal
 
+variables:
+- group: DevOps-Pipeline-Variables-Dev
+- name:  TF_VAR_ARM_ACCESS_KEY
+  value: $[variables.terra-state-access-key]
+
 steps:
 
 - task: AzureKeyVault@2
@@ -19,7 +24,15 @@ steps:
   inputs:
    Contents: secret.txt
    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  
+
+- task: CmdLine@2
+  inputs: 
+    script: 'echo $(TF_VAR_ARM_ACCESS_KEY) > sec-env.txt'
+- task: CopyFiles@2
+  input:
+    Contents: sec-env.txt
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
