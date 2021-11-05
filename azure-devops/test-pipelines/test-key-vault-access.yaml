@@ -7,6 +7,7 @@ variables:
 - group: DevOps-Pipeline-Variables-Dev
 - name: ARM_ACCESS_KEY
   value: $(terra-state-access-key)
+  
 steps:
 
 - task: AzureKeyVault@2

@@ -5,25 +5,17 @@ pool:
 
 variables:
 - group: DevOps-Pipeline-Variables-Dev
-- name: ARM_ACCESS_KEY
-  value: $(terra-state-access-key)
-- name:  ARM_SUBSCRIPTION_ID
-  value: $(arm-subscription-id)
-- name: ARM_TENANT_ID
-  value: $(arm-tenant-id)
-- name: ARM_CLIENT_ID
-  value: $(arm-client-id)
-- name: ARM_CLIENT_SECRET
-  value: $(arm-client-secret)
 
 steps:
 
-- task: TerraformInstaller@0
-  inputs: 
-    terraformVersion: '1.0.6'
-
 - task: CmdLine@2 
   displayName: 'Terraform Init'
+  env:
+    ARM_SUBSCRIPTION_ID: $(arm-subscription-id)
+    ARM_CLIENT_ID: $(arm-client-id)
+    ARM_CLIENT_SECRET: $(arm-client-secret)
+    ARM_TENANT_ID: $(arm-tenant-id)
+    ARM_ACCESS_KEY: $(terra-state-access-key)
   inputs : 
     script: |
       terraform init
