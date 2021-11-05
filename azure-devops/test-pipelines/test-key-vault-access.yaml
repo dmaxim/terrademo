@@ -25,7 +25,7 @@ steps:
 
 - task: CmdLine@2
   inputs: 
-    script: 'echo $env:terra-state-access-key > sec-env.txt'
+    script: 'echo $terra-state-access-key > sec-env.txt'
 
 - task: CopyFiles@2
   inputs:
