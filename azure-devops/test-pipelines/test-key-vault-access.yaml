@@ -5,8 +5,6 @@ pool:
 
 variables:
 - group: DevOps-Pipeline-Variables-Dev
-- name:  TF_VAR_ARM_ACCESS_KEY
-  value: $[variables.db-admin-user-name]
 
 steps:
 
@@ -27,7 +25,7 @@ steps:
 
 - task: CmdLine@2
   inputs: 
-    script: 'echo $(TF_VAR_ARM_ACCESS_KEY) > sec-env.txt'
+    script: 'echo $env:terra-state-access-key > sec-env.txt'
 
 - task: CopyFiles@2
   inputs:
