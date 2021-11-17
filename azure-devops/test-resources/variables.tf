@@ -9,3 +9,7 @@ variable "location" {
     default = "eastus"
 }
 
+variable "ENVIRONMENT" {
+    type = string
+    default = "dev"
+}

@@ -1,5 +1,6 @@
+
 # Create App Service Plan 
-/*
+
 resource "azurerm_app_service_plan" "app-service-test" {
   name                = join("-", ["plan", var.namespace, var.environment])
   resource_group_name = var.resource_group_name
@@ -58,4 +59,3 @@ resource "azurerm_app_service_virtual_network_swift_connection" "app-service-vne
   subnet_id      = var.app_service_subnet_id
 }
 
-*/
