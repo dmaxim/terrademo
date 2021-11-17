@@ -13,3 +13,8 @@ variable "ENVIRONMENT" {
     type = string
     default = "dev"
 }
+
+
+variable "replication_type" {
+    type = string
+}
