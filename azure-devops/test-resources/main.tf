@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "dev_ops" {
 
 
 resource "azurerm_storage_account" "dev_ops" {
-  name                      = join("", ["mxinfo", var.namespace, var.ENVIRONMENT])
+  name                      = join("", ["mxinfo", "testing", var.ENVIRONMENT])
   resource_group_name       = azurerm_resource_group.dev_ops.name
   location                  = azurerm_resource_group.dev_ops.location
   account_tier              = var.replication_type
