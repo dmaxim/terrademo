@@ -19,5 +19,6 @@ resource "azurerm_storage_account" "dev_ops" {
 
   tags = {
     Environment = var.ENVIRONMENT
+    Type = var.replication_type
   }
 }
