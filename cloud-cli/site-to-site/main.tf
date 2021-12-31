@@ -249,50 +249,50 @@ module "mssql" {
 # Create Azure Service Bus in another resource group
 
 
-resource "azurerm_resource_group" "asb" {
-  name     = join("-", ["rg", "asb", var.namespace, var.environment])
-  location = var.location
+# resource "azurerm_resource_group" "asb" {
+#   name     = join("-", ["rg", "asb", var.namespace, var.environment])
+#   location = var.location
 
-  tags = {
-    environment = var.environment
-  }
-}
-
-
-
-// ASB
-
-module "asb" {
-  source              = "./modules/asb"
-  namespace           = var.namespace
-  location            = azurerm_resource_group.asb.location
-  resource_group_name = azurerm_resource_group.asb.name
-  environment         = var.environment
-  asb_sku             = var.asb_sku
-  topics              = local.asb_topics
-}
+#   tags = {
+#     environment = var.environment
+#   }
+# }
 
 
-module "asb_subscription" {
-  source                 = "./modules/asb-subscription"
-  subscriptions          = local.topic_subscriptions
-  azure_service_bus_name = module.asb.azure_service_bus_name
-  resource_group_name    = azurerm_resource_group.asb.name
-}
+
+# // ASB
+
+# module "asb" {
+#   source              = "./modules/asb"
+#   namespace           = var.namespace
+#   location            = azurerm_resource_group.asb.location
+#   resource_group_name = azurerm_resource_group.asb.name
+#   environment         = var.environment
+#   asb_sku             = var.asb_sku
+#   topics              = local.asb_topics
+# }
 
 
-// Storage queue
+# module "asb_subscription" {
+#   source                 = "./modules/asb-subscription"
+#   subscriptions          = local.topic_subscriptions
+#   azure_service_bus_name = module.asb.azure_service_bus_name
+#   resource_group_name    = azurerm_resource_group.asb.name
+# }
 
-module "storage_queue" {
-  source                = "./modules/storage-queue"
-  storage_queue_account = "wanmessaging"
-  location              = azurerm_resource_group.asb.location
-  resource_group_name   = azurerm_resource_group.asb.name
-  storage_queue_name    = "demoevent"
-  private_subnet_id = module.network.private_subnet_id
-  whitelisted_ip_address = var.whitelisted_ip_address
-  // Type General Purpose V1 or V2?
-}
+
+# // Storage queue
+
+# module "storage_queue" {
+#   source                = "./modules/storage-queue"
+#   storage_queue_account = "wanmessaging"
+#   location              = azurerm_resource_group.asb.location
+#   resource_group_name   = azurerm_resource_group.asb.name
+#   storage_queue_name    = "demoevent"
+#   private_subnet_id = module.network.private_subnet_id
+#   whitelisted_ip_address = var.whitelisted_ip_address
+#   // Type General Purpose V1 or V2?
+# }
 
 
 #  module "storage_queue" {
