@@ -122,3 +122,8 @@ variable "azure_service_bus_connection" {
   description = "Connection string for Azure Service Bus"
   sensitive   = true
 }
+
+variable "firewall_ip_address" {
+  type = string
+  default = "10.120.0.4"
+}

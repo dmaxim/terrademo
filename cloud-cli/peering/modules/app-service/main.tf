@@ -34,10 +34,11 @@ resource "azurerm_app_service" "app-service-test" {
     "WEBSITE_HEALTHCHECK_MAXPINGFAILURES" = "10",
     "WEBSITE_NODE_DEFAULT_VERSION"        = "6.9.1",
     //"WEBSITE_RUN_FROM_PACKAGE"            = "1",
+    "ASPNETCORE_ENVIRONMENT"              = "Development"
     "EntityContext"                       = var.entity_context,
     "AzureStorage"                        = var.azure_storage_connection
     "ServiceBus"                          = var.azure_service_bus_connection
-    "NetworkTest:ApplicationVersion"      = "Site-To-Site"
+    "NetworkTest:ApplicationVersion"      = var.application_version
   }
 
   site_config {
