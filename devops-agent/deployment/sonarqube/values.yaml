@@ -1,0 +1,33 @@
+
+applicationEnvironment: "sonarqube"
+applicationName: "sonarqube"
+hostName: "seti-sonar.danmaxim.net"
+
+# Deployment
+replicaCount: 3
+
+appImage: 
+  repository: sonarqube
+  pullPolicy: "IfNotPresent"
+  tag: "8.2-community"
+
+dbImage: 
+  repository: postgres
+  pullPolicy: "IfNotPresent"
+  tag: "latest"
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 300Mi
+  limits:
+    cpu: 200m
+    memory: 300Mi
+
+dbresources:
+  requests:
+    cpu: 400m
+    memory: 2000Mi
+  limits:
+    cpu: 400m
+    memory: 2000Mi

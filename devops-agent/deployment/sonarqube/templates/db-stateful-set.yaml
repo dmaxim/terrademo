@@ -1,0 +1,61 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-db
+  namespace: {{.Release.Namespace}}
+  labels:
+    environment: {{.Values.applicationEnvironment}}
+    app: {{.Values.applicationName}}-db
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: {{.Values.applicationName}}-db
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        environment: {{.Values.applicationEnvironment}}
+        app: {{.Values.applicationName}}-db
+    spec:
+      terminationGracePeriodSeconds: 30
+      hostname: mssqlinst
+      serviceAccountName: {{.Release.Name}}-db
+      containers:
+      - name: api
+        image: {{.Values.dbImage.repository}}:{{.Values.dbImage.tag}}
+        imagePullPolicy: {{.Values.dbImage.pullPolicy}}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        {{- if .Values.dbresources}}
+        {{- with .Values.dbresources}}
+        resources:
+          requests:
+            memory: {{.requests.memory}} 
+            cpu: {{.requests.cpu}}
+          limits:
+            memory: {{.limits.memory}}
+            cpu: {{.limits.cpu}}
+        {{- end}}
+        {{- end}}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - name: datadir
+          mountPath: /var/opt/mssql
+      volumes:
+      - name: datadir
+        persistentVolumeClaim:
+          claimName: wimc-db-data
+      imagePullSecrets:
+        - name: mxinfo-acr-dv

@@ -1,0 +1,57 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}
+  namespace: {{.Release.Namespace}}
+  labels:
+    environment: {{.Values.applicationEnvironment}}
+    app: {{.Values.applicationName}}
+spec:
+  minReadySeconds: 10
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels: 
+      app: {{.Values.applicationName}}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        environment: {{.Values.applicationEnvironment}}
+        app: {{.Values.applicationName}}
+    spec:
+      serviceAccountName: {{.Release.Name}}
+      containers:
+      - name: api
+        image: {{.Values.appImage.repository}}:{{.Values.appImage.tag}}
+        imagePullPolicy: {{.Values.appImage.pullPolicy}}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        {{- if .Values.resources}}
+        {{- with .Values.resources}}
+        resources:
+          requests:
+            memory: {{.requests.memory}} 
+            cpu: {{.requests.cpu}}
+          limits:
+            memory: {{.limits.memory}}
+            cpu: {{.limits.cpu}}
+        {{- end}}
+        {{- end}}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+         - name: secrets-config
+           mountPath: /app/appsettings.secrets.json
+           subPath: "appsettings.secrets.json"
+      volumes:
+        - name: secrets-config
+          secret:
+            secretName: wimc-settings
+      imagePullSecrets:
+        - name: mxinfo-acr-dv

@@ -1,0 +1,138 @@
+# Service Account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sonarqube
+  namespace: seti-devops
+---
+# Data Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sonarqube-data
+  namespace: seti-devops
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: default
+  resources:
+    requests:
+      storage: 5Gi
+---
+# Extensions Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sonarqube-extensions
+  namespace: seti-devops
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: default
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube
+  namespace: seti-devops
+  labels:
+    app: sonarqube
+    environment: dev
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: sonarqube
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sonarqube
+        environment: dev
+    spec:
+      serviceAccountName: sonarqube
+      initContainers:
+      - name: fix-ext-volume-permission
+        image: busybox
+        command:
+        - sh
+        - -c
+        - chown -R 1000:1000 /opt/sonarqube/extensions
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: sonar-extensions
+          mountPath: /opt/sonarqube/extensions
+      - name: fix-data-volume-permissions
+        image: busybox
+        command:
+        - sh
+        - -c 
+        - chown -R 1000:1000 /opt/sonarqube/data
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: sonar-data
+          mountPath: /opt/sonarqube/data
+      containers:
+      - name: sonarui
+        image: sonarqube:8.9.2-community
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+        env:
+        - name: SONAR_JDBC_URL
+          value: jdbc:postgresql://postgres-db:5432/sonar
+        - name: SONAR_JDBC_USERNAME
+          value: sonar
+        - name: SONAR_JDBC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres
+              key: password
+        resources:
+          requests: 
+            memory: 1000Mi
+            cpu: 400m
+          limits:
+            memory: 2000Mi
+            cpu: 400m
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - name: sonar-data
+          mountPath: "/opt/sonarqube/data/"
+        - name: sonar-extensions
+          mountPath: "/opt/sonarqube/extensions/"
+      volumes:
+      - name: sonar-data
+        persistentVolumeClaim:
+          claimName: sonarqube-data
+      - name: sonar-extensions
+        persistentVolumeClaim:
+          claimName: sonarqube-extensions
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarqube
+  namespace: seti-devops
+spec:
+  selector:
+    app: sonarqube
+  type: ClusterIP
+  ports:
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
