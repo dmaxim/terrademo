@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: seti-devops
+---
+# Database Secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres
+  namespace: seti-devops
+type: Opaque
+data:
+  password: UjVnNFhjMTIkIWRhc2RmIC1uCg==
+---
+# Service Account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sonarqube-db
+  namespace: seti-devops
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  annotations: 
+    volume.beta.kubernetes.io/storage-class: azure-disk
+  namespace: seti-devops
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Deployment for the database
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube-db
+  namespace: seti-devops
+  labels:
+    app: sonarqube-db
+    environment: dev
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: sonarqube-db
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sonarqube-db
+        environment: dev
+    spec:
+      serviceAccountName: sonarqube-db
+      containers:
+      - name: db
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        env:
+        - name: POSTGRES_USER
+          value: sonar
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres
+              key: password
+        - name: PGDATA
+          value: /data/pgdata
+        resources:
+          requests: 
+            memory: 1000Mi
+            cpu: 400m
+          limits:
+            memory: 1000Mi
+            cpu: 400m
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /data
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: postgres-data
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db
+  namespace: seti-devops
+spec:
+  selector:
+    app: postgres-db
+  type: ClusterIP
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
