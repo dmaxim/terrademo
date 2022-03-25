@@ -17,3 +17,7 @@ https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-res
 https://docs.microsoft.com/en-us/azure/firewall/tutorial-hybrid-portal-policy
 
 https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/scalable-web-app
+
+https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
+
+https://docs.microsoft.com/en-us/microsoft-365/enterprise/connect-an-on-premises-network-to-a-microsoft-azure-virtual-network?view=o365-worldwide

@@ -6,3 +6,7 @@ output "private_subnet_id" {
 output "virtual_network_name" {
   value = azurerm_virtual_network.test_peer.name
 }
+
+output "virtual_network_id" {
+  value = azurerm_virtual_network.test_peer.id
+}

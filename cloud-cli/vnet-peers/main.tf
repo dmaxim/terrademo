@@ -39,10 +39,10 @@ resource "azurerm_subnet" "firewall_subnet" {
 }
 
 resource "azurerm_subnet" "hub_gateway_subnet" {
-    name = "GatewaySubnet"
-    resource_group_name  = azurerm_resource_group.hub.name
-    virtual_network_name = module.hub_network.virtual_network_name
-    address_prefixes     = [cidrsubnet(var.hub_vnet_address_space, 8, 1)]
+  name                 = "GatewaySubnet"
+  resource_group_name  = azurerm_resource_group.hub.name
+  virtual_network_name = module.hub_network.virtual_network_name
+  address_prefixes     = [cidrsubnet(var.hub_vnet_address_space, 8, 1)]
 }
 
 # Azure Firewall
