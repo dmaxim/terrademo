@@ -63,3 +63,32 @@ resource "azurerm_virtual_network_gateway" "onprem" {
     subnet_id                     = azurerm_subnet.gateway_subnet.id
   }
 }
+
+
+# Create VPN Connection from hub gateway to the on prem gateway
+
+
+resource "azurerm_virtual_network_gateway_connection" "hub_to_onprem" {
+  name                = "hub-to-onprem"
+  location            = azurerm_resource_group.hub.location
+  resource_group_name = azurerm_resource_group.hub.name
+
+  type                            = "Vnet2Vnet"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.hub.id
+  peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.onprem.id
+
+  shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
+}
+
+
+resource "azurerm_virtual_network_gateway_connection" "onprem_to_hub" {
+  name                = "onprem_to_hub"
+  location            = azurerm_resource_group.onprem.location
+  resource_group_name = azurerm_resource_group.onprem.name
+
+  type                            = "Vnet2Vnet"
+  virtual_network_gateway_id      = azurerm_virtual_network_gateway.onprem.id
+  peer_virtual_network_gateway_id = azurerm_virtual_network_gateway.hub.id
+
+  shared_key = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
+}
