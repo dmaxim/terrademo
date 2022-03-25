@@ -17,17 +17,17 @@ resource "azurerm_subnet" "private_subnet" {
   virtual_network_name = azurerm_virtual_network.test_peer.name
   address_prefixes     = [cidrsubnet(var.vnet_address_space, 8, 2)]
 
-  delegation {
-    name = join("-", ["delegation", var.namespace, var.environment])
+  # delegation {
+  #   name = join("-", ["delegation", var.namespace, var.environment])
 
-    service_delegation {
-      name    = "Microsoft.Web/serverFarms"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
-    }
-  }
+  #   service_delegation {
+  #     name    = "Microsoft.Web/serverFarms"
+  #     actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+  #   }
+  #}
 
-  service_endpoints = [
-    "Microsoft.KeyVault",
-    "Microsoft.Sql"
-  ]
+  # service_endpoints = [
+  #   "Microsoft.KeyVault",
+  #   "Microsoft.Sql"
+  # ]
 }
