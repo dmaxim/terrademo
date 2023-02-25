@@ -6,6 +6,5 @@
 # Workload VM in the Spoke subnet
 
 
-
 # On Prem VM
 

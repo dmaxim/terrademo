@@ -30,7 +30,7 @@ Via cloud shell
 ````
 Get-AzureRMSubscription
 Get-AzSubscription -SubscriptionName mxinfo-prod
-
+terra
 Set-AzVMExtension `
         -ResourceGroupName rg-mxinfo-peer-spoke `
         -ExtensionName IIS `
@@ -42,3 +42,27 @@ Set-AzVMExtension `
         -Location WestUS
 
 ````
+
+Hub Vnet 10.140.0.0/16
+10.140.2.0
+FW 10.140.1.0/24
+Gateway 10.140.1.0/24
+
+
+Spoke Vnet 10.142.0.0/16
+10.142.2.0/24
+
+Routes 0.0.0.0/0 to Firewall - attached to 10.142.2.0
+
+On Prem Vnet
+10.144.0.0/16
+GW 10.144.1.0/24
+10.144.2.0/24
+
+Routes 10.142.0.0/16 to firewall - attached to 10.140.1.0/24
+
+## Gitlab issue
+
+error during reconfigure step
+sudo gitlab-ctl reconfigure
+

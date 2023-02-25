@@ -200,50 +200,50 @@ resource "azurerm_linux_virtual_machine" "jumpbox" {
 
 # Add A Bastion Host
 
-module "bastion_host" {
-  source                        = "./modules/bastion"
-  resource_group_name           = azurerm_resource_group.wan.name
-  location                      = azurerm_resource_group.wan.location
-  namespace                     = var.namespace
-  environment                   = var.environment
-  bastion_subnet_address_prefix = var.bastion_subnet_address_prefix
-  virtual_network_name          = module.network.virtual_network_name
-  inbound_ip_address            = var.whitelisted_ip_address
-}
+# module "bastion_host" {
+#   source                        = "./modules/bastion"
+#   resource_group_name           = azurerm_resource_group.wan.name
+#   location                      = azurerm_resource_group.wan.location
+#   namespace                     = var.namespace
+#   environment                   = var.environment
+#   bastion_subnet_address_prefix = var.bastion_subnet_address_prefix
+#   virtual_network_name          = module.network.virtual_network_name
+#   inbound_ip_address            = var.whitelisted_ip_address
+# }
 
 
 # Create an App Service in a public subnet
 
-module "app_service" {
-  source                       = "./modules/app-service"
-  resource_group_name          = azurerm_resource_group.wan.name
-  location                     = azurerm_resource_group.wan.location
-  namespace                    = var.namespace
-  environment                  = var.environment
-  app_service_subnet_id        = module.network.public_subnet_id
-  entity_context               = var.entity_context
-  azure_storage_connection     = var.azure_storage_connection
-  azure_service_bus_connection = var.azure_service_bus_connection
-}
+# module "app_service" {
+#   source                       = "./modules/app-service"
+#   resource_group_name          = azurerm_resource_group.wan.name
+#   location                     = azurerm_resource_group.wan.location
+#   namespace                    = var.namespace
+#   environment                  = var.environment
+#   app_service_subnet_id        = module.network.public_subnet_id
+#   entity_context               = var.entity_context
+#   azure_storage_connection     = var.azure_storage_connection
+#   azure_service_bus_connection = var.azure_service_bus_connection
+# }
 
 # Create an Azure SQL Instance in the private subnet
 
-module "mssql" {
-  source                     = "./modules/mssql"
-  namespace                  = var.namespace
-  environment                = var.environment
-  resource_group_name        = azurerm_resource_group.wan.name
-  location                   = azurerm_resource_group.wan.location
-  audit_storage_account      = var.audit_storage_account
-  audit_storage_account_tier = var.audit_storage_account_tier
-  replication_type           = var.replication_type
-  sql_server_version         = "12.0"
-  sql_admin                  = var.sql_admin
-  sql_admin_password         = var.sql_admin_password
-  private_subnet_id          = module.network.private_subnet_id
-  whitelisted_ip_address     = var.whitelisted_ip_address
-  databases                  = local.sql_databases
-}
+# module "mssql" {
+#   source                     = "./modules/mssql"
+#   namespace                  = var.namespace
+#   environment                = var.environment
+#   resource_group_name        = azurerm_resource_group.wan.name
+#   location                   = azurerm_resource_group.wan.location
+#   audit_storage_account      = var.audit_storage_account
+#   audit_storage_account_tier = var.audit_storage_account_tier
+#   replication_type           = var.replication_type
+#   sql_server_version         = "12.0"
+#   sql_admin                  = var.sql_admin
+#   sql_admin_password         = var.sql_admin_password
+#   private_subnet_id          = module.network.private_subnet_id
+#   whitelisted_ip_address     = var.whitelisted_ip_address
+#   databases                  = local.sql_databases
+# }
 
 
 # Create Azure Service Bus in another resource group
