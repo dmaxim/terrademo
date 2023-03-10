@@ -29,8 +29,16 @@ resource "azurerm_public_ip" "wan" {
   resource_group_name = azurerm_resource_group.wan.name
   location            = azurerm_resource_group.wan.location
 
-  allocation_method = "Dynamic"
+  sku = "Standard"
+
+  allocation_method = "Static"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
+
+
 # Create Virtual Network Gateway
 
 resource "azurerm_virtual_network_gateway" "wan" {
@@ -43,8 +51,9 @@ resource "azurerm_virtual_network_gateway" "wan" {
 
   active_active = false
   enable_bgp    = false
-  sku           = "VpnGw2"
+  sku           = "VpnGw2AZ"
   generation    = "Generation2"
+  
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
@@ -54,26 +63,21 @@ resource "azurerm_virtual_network_gateway" "wan" {
   }
 }
 
-#Create local network gateway - this should be deleted
-# resource "azurerm_local_network_gateway" "home" {
-#   name                = join("-", ["lng", var.namespace, var.environment])
+
+
+# Create the meraki gateway
+
+# Meraki gateway an connection setup was invalid - had to manually create
+# resource "azurerm_local_network_gateway" "meraki" {
+#   name                = "mxinfo-meraki"
 #   location            = azurerm_resource_group.wan.location
 #   resource_group_name = azurerm_resource_group.wan.name
 #   gateway_address     = var.local_vpn_address
 #   address_space       = [var.local_address_space]
 # }
 
-# Create the meraki gateway
-resource "azurerm_local_network_gateway" "meraki" {
-  name                = "mxinfo-meraki"
-  location            = azurerm_resource_group.wan.location
-  resource_group_name = azurerm_resource_group.wan.name
-  gateway_address     = var.local_vpn_address
-  address_space       = [var.local_address_space]
-}
-
-# Create the connection
-# Commented out to prevent changing
+# # Create the connection
+# # Commented out to prevent changing
 # resource "azurerm_virtual_network_gateway_connection" "home" {
 #   name                = join("-", ["con", var.namespace, var.environment])
 #   location            = azurerm_resource_group.wan.location
@@ -86,17 +90,18 @@ resource "azurerm_local_network_gateway" "meraki" {
 #   shared_key = var.vpn_shared_key
 # }
 
+
 # # Create VM On Private Subnet
 
 # Storage Account Id
-resource "random_id" "randomId" {
-  keepers = {
-    resource_group = azurerm_resource_group.wan.name
+# resource "random_id" "randomId" {
+#   keepers = {
+#     resource_group = azurerm_resource_group.wan.name
 
-  }
+#   }
 
-  byte_length = 8
-}
+#   byte_length = 8
+# }
 
 
 # Storage Account

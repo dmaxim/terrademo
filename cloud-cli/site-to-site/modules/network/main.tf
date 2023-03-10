@@ -14,23 +14,23 @@ resource "azurerm_subnet" "gateway_subnet" {
 }
 
 
-# Create subnet for the Azure Firewall
-resource "azurerm_subnet" "firewall" {
-  name = "AzureFirewallSubnet"
+# # Create subnet for the Azure Firewall
+# resource "azurerm_subnet" "firewall" {
+#   name = "AzureFirewallSubnet"
 
-  resource_group_name  = azurerm_virtual_network.wan.resource_group_name
-  virtual_network_name = azurerm_virtual_network.wan.name
-  address_prefixes     = [cidrsubnet(var.vnet_address_space, 10, 0)]
+#   resource_group_name  = azurerm_virtual_network.wan.resource_group_name
+#   virtual_network_name = azurerm_virtual_network.wan.name
+#   address_prefixes     = [cidrsubnet(var.vnet_address_space, 10, 0)]
 
-}
+# }
 
-# Create subnet for Azure Firewall managment 
-resource "azurerm_subnet" "firewall_management" {
-  name = "AzureFirewallManagementSubnet"
-  resource_group_name  = azurerm_virtual_network.wan.resource_group_name
-  virtual_network_name = azurerm_virtual_network.wan.name
-  address_prefixes     = [cidrsubnet(var.vnet_address_space, 10, 3)]
-}
+# # Create subnet for Azure Firewall managment 
+# resource "azurerm_subnet" "firewall_management" {
+#   name = "AzureFirewallManagementSubnet"
+#   resource_group_name  = azurerm_virtual_network.wan.resource_group_name
+#   virtual_network_name = azurerm_virtual_network.wan.name
+#   address_prefixes     = [cidrsubnet(var.vnet_address_space, 10, 3)]
+# }
 
 resource "azurerm_subnet" "private_subnet" {
   name                 = "PrivateSubnet"
