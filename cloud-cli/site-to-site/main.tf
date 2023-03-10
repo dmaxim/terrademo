@@ -97,7 +97,6 @@ resource "azurerm_virtual_network_gateway" "wan" {
 # resource "random_id" "randomId" {
 #   keepers = {
 #     resource_group = azurerm_resource_group.wan.name
-
 #   }
 
 #   byte_length = 8
